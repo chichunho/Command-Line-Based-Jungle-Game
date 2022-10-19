@@ -1,4 +1,4 @@
-package clj.model;
+package clj;
 
 public class Coordinate {
 
@@ -12,6 +12,17 @@ public class Coordinate {
         int [] temp = this.convertToAbs(pos);
         this.x = temp[0];
         this.y = temp[1];
+    }
+
+    /**
+     * Constructor of object Coordinate
+     * Provide a copy function
+     * @param pos
+     * @return
+     */
+    public Coordinate(Coordinate old){
+        this.x = old.getX();
+        this.y = old.getY();
     }
 
     // code for convertToAbs
@@ -45,11 +56,11 @@ public class Coordinate {
         return this.y;
     }
 
-    protected void setX(int x){
+    public void setX(int x){
         this.x = x;
     }
 
-    protected void setY(int y){
+    public void setY(int y){
         this.y = y;
     }
 }

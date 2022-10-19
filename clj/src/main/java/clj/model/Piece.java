@@ -1,5 +1,7 @@
 package clj.model;
 
+import clj.Coordinate;
+
 public abstract class Piece implements Party{
 
     private final String animal;
@@ -58,7 +60,7 @@ public abstract class Piece implements Party{
      * @param   dy      The displacement along y-axis
      * @return  A Coordinate object of the destination
      */
-    abstract protected Coordinate calFinalDest(Board board, Coordinate pos, int dx, int dy);
+    abstract protected Coordinate calFinalDest(Coordinate pos, int dx, int dy);
 
     /**
      * This function determines if this piece can capture another piece

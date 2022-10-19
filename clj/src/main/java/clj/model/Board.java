@@ -1,5 +1,7 @@
 package clj.model;
 
+import clj.Coordinate;
+
 public class Board {
 
     private Piece[][] Pieces = new Piece[9][7];
@@ -52,7 +54,6 @@ public class Board {
      */
     protected void play(Coordinate from, Coordinate to){
 
-        // 
         Piece target = Pieces[to.getY()][to.getX()];
 
         target = Pieces[from.getY()][from.getX()];
