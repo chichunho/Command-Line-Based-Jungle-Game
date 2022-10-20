@@ -3,24 +3,30 @@ package clj.controller;
 
 public class Controller {
 
-
+    private Request request = new Request();
     public Controller(){
-        // TODO initizalize model from package model
-        Request request = new Request();
+
     }
 
-    private String userInput;
+    private String userPiece;
+    private String userDirect;
 
+    public void setUserPiece(String input){
+        this.userPiece = input;
+    }
 
-    public void updateView(){
-
-
+    public void setUserDirect(String input){
+        this.userDirect = input;
     }
 
     /**
      * validate
      */
-    private boolean validateInput(String input){
+    private boolean validatePiece(String input){
+        return true;
+    }
+
+    private boolean validateDirection(String input){
 
         return true;
     }
@@ -30,18 +36,19 @@ public class Controller {
      * convert userinput to coordinate
      *
      */
-    public void inputParse() {
-
-
-    }
-
-    /**
-     *
-     * get user input
-     * store in userInput
-     */
-    public void promptUser(){
-
+    public void parseDirect() {
+        //IF userDirect pass validateDirect(), parse to request dx,dy
 
     }
+
+    public void parsePiece(){
+        // if userPiece pass validatePiece, parse to coordinate
+
+    }
+    public Request getRequest(){
+        return request;
+    }
+
+
+
 }
