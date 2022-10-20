@@ -10,6 +10,7 @@ public class Request {
     protected Request(){
         this.dx = 0;
         this.dy = 0;
+        this.coordinate = new Coordinate();
     }
 
     protected void setCoordX(int x){
