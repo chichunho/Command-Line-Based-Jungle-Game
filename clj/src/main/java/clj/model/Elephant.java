@@ -9,7 +9,7 @@ public class Elephant extends Piece{
     }
 
     @Override
-    public boolean canCapture(Piece another){
+    protected boolean canCapture(Piece another){
         
         /* 
         // if there is no enemy piece
@@ -37,7 +37,7 @@ public class Elephant extends Piece{
     }
 
     @Override
-    public boolean canMoveTo(BoardObj dest){
+    protected boolean canMoveTo(BoardObj dest){
         
         /*
         // if the destination is water

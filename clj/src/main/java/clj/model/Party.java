@@ -8,5 +8,5 @@ public interface Party {
      * 2->Blue party
      * @return      Party
      */
-    int getParty();
+    abstract int getParty();
 }

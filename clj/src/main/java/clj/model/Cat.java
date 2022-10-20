@@ -15,13 +15,13 @@ public class Cat extends Piece{
     }
 
     @Override
-    public boolean canCapture(Piece another) {
+    protected boolean canCapture(Piece another) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean canMoveTo(BoardObj dest) {
+    protected boolean canMoveTo(BoardObj dest) {
         // TODO Auto-generated method stub
         return false;
     }

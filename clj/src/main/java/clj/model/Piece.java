@@ -33,7 +33,7 @@ public abstract class Piece implements Party{
         this.trapped = trapped;
     }
 
-    public boolean isTrapped(){
+    protected boolean isTrapped(){
         return this.trapped;
     }
 
@@ -41,7 +41,7 @@ public abstract class Piece implements Party{
         this.inWater = inWater;
     }
 
-    public boolean isInWater(){
+    protected boolean isInWater(){
         return this.inWater;
     }
 
@@ -64,12 +64,12 @@ public abstract class Piece implements Party{
      * @param another   Another piece
      * @return          A boolean value
      */
-    abstract public boolean canCapture(Piece another);
+    abstract protected boolean canCapture(Piece another);
 
     /**
      * This function determine if this piece can move to the destination
      * @param dest      A Coordinate object of the destination
      * @return          A boolean value
      */
-    abstract public boolean canMoveTo(BoardObj dest);
+    abstract protected boolean canMoveTo(BoardObj dest);
 }
