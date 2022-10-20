@@ -9,6 +9,6 @@ public class Model {
     }
 
     public Response run(Request request){
-        
+        return null;
     }
 }
