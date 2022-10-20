@@ -1,4 +1,4 @@
-package clj.model;
+package clj.controller;
 
 public class Coordinate {
 
@@ -12,6 +12,11 @@ public class Coordinate {
         int [] temp = this.convertToAbs(pos);
         this.x = temp[0];
         this.y = temp[1];
+    }
+
+    public Coordinate(){
+        this.x = 0;
+        this.y = 0;
     }
 
     // code for convertToAbs
