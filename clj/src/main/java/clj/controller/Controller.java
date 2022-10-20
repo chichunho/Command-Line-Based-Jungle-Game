@@ -22,11 +22,11 @@ public class Controller {
     /**
      * validate
      */
-    private boolean validatePiece(String input){
+    private boolean validatePiece(){
         return true;
     }
 
-    private boolean validateDirection(String input){
+    private boolean validateDirection(){
 
         return true;
     }
