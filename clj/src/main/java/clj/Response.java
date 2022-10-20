@@ -1,4 +1,4 @@
-package clj.model;
+package clj;
 
 public class Response {
     

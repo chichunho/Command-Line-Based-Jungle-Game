@@ -10,7 +10,8 @@ public class Elephant extends Piece{
 
     @Override
     public boolean canCapture(Piece another){
-
+        
+        /* 
         // if there is no enemy piece
         // then this is always true
         if (another == null){
@@ -31,12 +32,14 @@ public class Elephant extends Piece{
         
         // Since Elephant has the highest rank among all animal
         // no further rank comparison is needed
+        */
         return true;
     }
 
     @Override
     public boolean canMoveTo(BoardObj dest){
         
+        /*
         // if the destination is water
         // then this is always false
         if (dest.getType().equals("Water")){
@@ -48,17 +51,20 @@ public class Elephant extends Piece{
         if (dest.getType().equals("Den") && dest.getParty() == this.getParty()){
             return false;
         }
+        */
 
         return true;
     }
 
     @Override
     protected Coordinate calFinalDest(Coordinate pos, int dx, int dy){
+        /*
         // since this is Elephant, no jump operation
-
         Coordinate finPos = new Coordinate(pos);
         finPos.setX(pos.getX()+dx);
         finPos.setY(pos.getY()+dy);
         return finPos;
+        */
+        return null;
     }
 }
