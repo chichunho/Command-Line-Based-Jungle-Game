@@ -37,7 +37,7 @@ public class Request {
         this.dy = y;
     }
 
-    public Coordinate getCoordX(){
+    public Coordinate getCoord(){
         return coordinate;
     }
 
