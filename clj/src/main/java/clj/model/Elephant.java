@@ -4,7 +4,7 @@ import clj.Coordinate;
 
 public class Elephant extends Piece{
     
-    public Elephant(int party){
+    protected Elephant(int party){
         super("Elephant", 8, party);
     }
 
@@ -57,13 +57,10 @@ public class Elephant extends Piece{
     }
 
     @Override
-    protected Coordinate calFinalDest(Coordinate pos, int dx, int dy){
+    protected Coordinate calFinalDest(Coordinate dest){
         /*
         // since this is Elephant, no jump operation
-        Coordinate finPos = new Coordinate(pos);
-        finPos.setX(pos.getX()+dx);
-        finPos.setY(pos.getY()+dy);
-        return finPos;
+        return dest;
         */
         return null;
     }

@@ -54,13 +54,10 @@ public abstract class Piece implements Party{
      * given that no piece is located in the mid way.
      * Any pieces located in the mid way will stop the searching and return the coordinate
      * where it meet the piece.
-     * @param   board   Current game board in the system
-     * @param   pos     The piece's currect position
-     * @param   dx      The displacement along x-axis
-     * @param   dy      The displacement along y-axis
-     * @return  A Coordinate object of the destination
+     * @param   dest    The destination decided by the user
+     * @return  A Coordinate object of the final destination decided by the game logic
      */
-    abstract protected Coordinate calFinalDest(Coordinate pos, int dx, int dy);
+    abstract protected Coordinate calFinalDest(Coordinate dest);
 
     /**
      * This function determines if this piece can capture another piece

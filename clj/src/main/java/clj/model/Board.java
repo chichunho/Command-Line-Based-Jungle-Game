@@ -9,6 +9,7 @@ public class Board {
 
     public Board(){
 
+        /*
         // initialized the board, cover it with Land
         for (int i = 0; i < terrain.length; i++){
             for (int j = 0; j < terrain[0].length; j++){
@@ -23,6 +24,7 @@ public class Board {
         // TODO initialized specific squares as Dens
 
         // TODO initialized the pieces
+        */
 
     }
 
@@ -32,7 +34,8 @@ public class Board {
      * @return      The piece
      */
     public Piece pick(Coordinate pos){
-        return Pieces[pos.getY()][pos.getX()];
+        /*return Pieces[pos.getY()][pos.getX()];*/
+        return null;
     }
 
     /**
@@ -41,7 +44,8 @@ public class Board {
      * @return      A String object represent the type of terrain
      */
     public String at(Coordinate pos){
-        return terrain[pos.getY()][pos.getX()].getType();
+        /*return terrain[pos.getY()][pos.getX()].getType();*/
+        return null;
     }
 
     /**
@@ -52,8 +56,9 @@ public class Board {
      * @param from      The position of the piece that picked up by the player
      * @param to        The destination
      */
-    protected void play(Coordinate from, Coordinate to){
+    protected boolean play(Coordinate from, Coordinate to){
 
+        /* 
         Piece target = Pieces[to.getY()][to.getX()];
 
         target = Pieces[from.getY()][from.getX()];
@@ -72,5 +77,7 @@ public class Board {
         else{
             target.setTrapped(false);
         }
+        */
+        return false;
     }
 }

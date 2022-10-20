@@ -1,13 +1,15 @@
 package clj;
 
-/**
- * Hello world!
- *
- */
+import clj.controller.Controller;
+import clj.model.Model;
+import clj.view.View;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        View view = new View();
+        Controller controller = new Controller(view);
+        Model model = new Model(view);
     }
 }
