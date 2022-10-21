@@ -1,5 +1,7 @@
 package clj.model;
 
+import clj.Coordinate;
+
 public abstract class Piece implements Party{
 
     private final String animal;
@@ -31,7 +33,7 @@ public abstract class Piece implements Party{
         this.trapped = trapped;
     }
 
-    public boolean isTrapped(){
+    protected boolean isTrapped(){
         return this.trapped;
     }
 
@@ -39,7 +41,7 @@ public abstract class Piece implements Party{
         this.inWater = inWater;
     }
 
-    public boolean isInWater(){
+    protected boolean isInWater(){
         return this.inWater;
     }
 
@@ -52,25 +54,22 @@ public abstract class Piece implements Party{
      * given that no piece is located in the mid way.
      * Any pieces located in the mid way will stop the searching and return the coordinate
      * where it meet the piece.
-     * @param   board   Current game board in the system
-     * @param   pos     The piece's currect position
-     * @param   dx      The displacement along x-axis
-     * @param   dy      The displacement along y-axis
-     * @return  A Coordinate object of the destination
+     * @param   dest    The destination decided by the user
+     * @return  A Coordinate object of the final destination decided by the game logic
      */
-    abstract protected Coordinate calFinalDest(Board board, Coordinate pos, int dx, int dy);
+    abstract protected Coordinate calFinalDest(Coordinate dest);
 
     /**
      * This function determines if this piece can capture another piece
      * @param another   Another piece
      * @return          A boolean value
      */
-    abstract public boolean canCapture(Piece another);
+    abstract protected boolean canCapture(Piece another);
 
     /**
      * This function determine if this piece can move to the destination
      * @param dest      A Coordinate object of the destination
      * @return          A boolean value
      */
-    abstract public boolean canMoveTo(BoardObj dest);
+    abstract protected boolean canMoveTo(BoardObj dest);
 }

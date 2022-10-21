@@ -1,27 +1,36 @@
 package clj.model;
 
 public class Response {
+    private int messageId;
+    private String[] arguments;
+    private boolean isEndGame;
     
-    private String message;
-    private boolean isSuccess;
-
-    protected void setMessage(String message){
-        this.message = message;
+    public Response(){
+        this.messageId = -1;
+        this.isEndGame = false;
     }
 
-    protected void setIsSuccess(boolean isSuccess){
-        this.isSuccess = isSuccess;
+    protected void setMsgId(int id){
+        this.messageId = id;
     }
 
-    public String getMessage(){
-        return this.message;
+    protected void setArguments(String[] arguments){
+        this.arguments = arguments;
     }
 
-    public boolean getIsSuccess(){
-        return this.isSuccess;
+    public int getMsgId(){
+        return this.messageId;
     }
 
-    public boolean getIsEndGame() {
-        return false;
+    public String[] getArguments(){
+        return this.arguments;
+    }
+
+    protected void setIsEndGame(boolean isEndGame){
+        this.isEndGame = isEndGame;
+    }
+
+    public boolean getIsEndGame(){
+        return this.isEndGame;
     }
 }

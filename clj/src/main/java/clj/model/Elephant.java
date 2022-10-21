@@ -1,14 +1,17 @@
 package clj.model;
 
+import clj.Coordinate;
+
 public class Elephant extends Piece{
     
-    public Elephant(int party){
+    protected Elephant(int party){
         super("Elephant", 8, party);
     }
 
     @Override
-    public boolean canCapture(Piece another){
-
+    protected boolean canCapture(Piece another){
+        
+        /* 
         // if there is no enemy piece
         // then this is always true
         if (another == null){
@@ -29,12 +32,14 @@ public class Elephant extends Piece{
         
         // Since Elephant has the highest rank among all animal
         // no further rank comparison is needed
+        */
         return true;
     }
 
     @Override
-    public boolean canMoveTo(BoardObj dest){
+    protected boolean canMoveTo(BoardObj dest){
         
+        /*
         // if the destination is water
         // then this is always false
         if (dest.getType().equals("Water")){
@@ -46,15 +51,17 @@ public class Elephant extends Piece{
         if (dest.getType().equals("Den") && dest.getParty() == this.getParty()){
             return false;
         }
+        */
 
         return true;
     }
 
     @Override
-    protected Coordinate calFinalDest(Board board, Coordinate pos, int dx, int dy){
+    protected Coordinate calFinalDest(Coordinate dest){
+        /*
         // since this is Elephant, no jump operation
-        pos.setX(pos.getX()+dx);
-        pos.setY(pos.getY()+dy);
-        return pos;
+        return dest;
+        */
+        return null;
     }
 }
