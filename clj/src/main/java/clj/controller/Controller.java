@@ -12,19 +12,6 @@ public class Controller {
         this.view = view;
     }
 
-    /* 
-    TODO 
-    private variable can directly manipulate in class itself
-    the follwoing 2 is redundant functions, can be removed 
-    */
-    public void setUserPiece(String input){
-        this.userPiece = input;
-    }
-
-    public void setUserDirect(String input){
-        this.userDirect = input;
-    }
-
     /**
      * validate
      */
@@ -63,6 +50,9 @@ public class Controller {
         return request;
     }
     */
+    public Request getUserInput(){
+        return null;
+    }
 
     /*
     TODO
@@ -73,23 +63,16 @@ public class Controller {
      * convert userinput to coordinate
      *
      */
-    public void parseDirect() {
+    private void parseDirect() {
         //IF userDirect pass validateDirect(), parse to request dx,dy
 
     }
 
-    public void parsePiece(){
+    private void parsePiece(){
         // if userPiece pass validatePiece, parse to coordinate
 
     }
-    
-    /*
-    TODO
-    redundant function, can be removed
-    */
-    public Request getRequest(){
-        return request;
-    }
+
 
 
 
