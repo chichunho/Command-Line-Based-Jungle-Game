@@ -1,13 +1,13 @@
 package clj.model;
 
-import java.util.ArrayList;
-
 public class Response {
     private int messageId;
     private String[] arguments;
+    private boolean isEndGame;
     
     public Response(){
-        messageId = -1;
+        this.messageId = -1;
+        this.isEndGame = false;
     }
 
     protected void setMsgId(int id){
@@ -24,5 +24,13 @@ public class Response {
 
     public String[] getArguments(){
         return this.arguments;
+    }
+
+    protected void setIsEndGame(boolean isEndGame){
+        this.isEndGame = isEndGame;
+    }
+
+    public boolean getIsEndGame(){
+        return this.isEndGame;
     }
 }
