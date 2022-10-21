@@ -28,27 +28,6 @@ public class Model {
      * @param to        The destination
      */
     private boolean play(Coordinate from, Coordinate to){
-
-        /* 
-        Piece target = Pieces[to.getY()][to.getX()];
-
-        target = Pieces[from.getY()][from.getX()];
-        Pieces[from.getY()][from.getX()] = null;
-
-        if (terrain[to.getY()][to.getX()].getType().equals("Water")){
-            target.setInWater(true);
-        }
-        else{
-            target.setInWater(false);
-        }
-
-        if (terrain[to.getY()][to.getX()].getType().equals("Trap")){
-            target.setTrapped(true);
-        }
-        else{
-            target.setTrapped(false);
-        }
-        */
         return false;
     }
 }
