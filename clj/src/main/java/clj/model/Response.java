@@ -5,17 +5,9 @@ public class Response {
     private String[] arguments;
     private boolean isEndGame;
     
-    public Response(){
+    protected Response(){
         this.messageId = -1;
         this.isEndGame = false;
-    }
-
-    protected void setMsgId(int id){
-        this.messageId = id;
-    }
-
-    protected void setArguments(String[] arguments){
-        this.arguments = arguments;
     }
 
     public int getMsgId(){
@@ -24,10 +16,6 @@ public class Response {
 
     public String[] getArguments(){
         return this.arguments;
-    }
-
-    protected void setIsEndGame(boolean isEndGame){
-        this.isEndGame = isEndGame;
     }
 
     public boolean getIsEndGame(){

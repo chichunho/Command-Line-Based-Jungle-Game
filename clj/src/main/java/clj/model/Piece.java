@@ -10,17 +10,17 @@ public abstract class Piece implements Party{
     private boolean trapped = false;
     private boolean inWater = false;
 
-    public Piece(String animal, int rank, int party){
+    protected Piece(String animal, int rank, int party){
         this.animal = animal;
         this.rank = rank;
         this.party = party;
     }
 
-    public String getAnimal(){
+    protected String getAnimal(){
         return this.animal;
     }
 
-    public int getRank(){
+    protected int getRank(){
         return this.rank;
     }
 

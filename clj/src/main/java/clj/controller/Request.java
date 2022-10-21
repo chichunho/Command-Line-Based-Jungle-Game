@@ -9,18 +9,11 @@ public class Request {
 
     private Player player;
 
-    protected Request(){
+    protected Request(Player player, Coordinate coordinate, int dx, int dy){
         this.dx = 0;
         this.dy = 0;
-        this.coordinate = new Coordinate();
-    }
-
-    protected void setCoordX(int x){
-        coordinate.setX(x);
-    }
-
-    protected void setCoordY(int y){
-        coordinate.setY(y);
+        this.coordinate = coordinate;
+        this.player = player;
     }
 
     public int getDx(){
@@ -31,25 +24,11 @@ public class Request {
         return this.dy;
     }
 
-    protected void setDx(int x){
-        this.dx = x;
-    }
-
-    protected void setDy(int y){
-        this.dy = y;
-    }
-
     public Coordinate getCoord(){
         return coordinate;
-    }
-
-    protected void setPlayer(Player player){
-        this.player = player;
     }
 
     public Player getPlayer(){
         return this.player;
     }
-
-
 }

@@ -14,21 +14,6 @@ public class Coordinate {
         this.y = temp[1];
     }
 
-    public Coordinate(){
-        this.x = 0;
-        this.y = 0;
-    }
-    /**
-     * Constructor of object Coordinate
-     * Provide a copy function
-     * @param pos
-     * @return
-     */
-    public Coordinate(Coordinate old){
-        this.x = old.getX();
-        this.y = old.getY();
-    }
-
     // code for convertToAbs
     /* 
     private int getPosX(String pos){
@@ -58,13 +43,5 @@ public class Coordinate {
 
     public int getY(){
         return this.y;
-    }
-
-    protected void setX(int x){
-        this.x = x;
-    }
-
-    protected void setY(int y){
-        this.y = y;
     }
 }

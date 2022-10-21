@@ -7,7 +7,7 @@ public class Board {
     private Piece[][] Pieces = new Piece[9][7];
     private BoardObj[][] terrain = new BoardObj[9][7];
 
-    public Board(){
+    protected Board(){
 
         /*
         // initialized the board, cover it with Land
