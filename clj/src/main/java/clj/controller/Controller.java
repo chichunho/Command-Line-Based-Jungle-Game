@@ -1,5 +1,6 @@
 package clj.controller;
 
+import clj.view.InputForm;
 import clj.view.View;
 
 public class Controller {
@@ -24,36 +25,12 @@ public class Controller {
 
     /*
     TODO
-    Actually you can encupsulate all operations into one public function getUserInput()
-    sth like:
-    public Request getUserInput(){
-        // moved the private variables to here
-        Request request = new Request();
-        String coord;
-        String direction;
-        while(True){
-            view.askUserInputCoord(); // may change
-            coord = scanner.nextLine();
-            if (validatePiece(coord)) break;
-            view.alertUserWrongCoord(); // may change
-        }
-        // you may want to give user a choice to re-select the Piece
-        while(True){
-            view.askUserInputDirection(); // may change
-            direction = scanner.nextLine();
-            if (validateDirection(direction)) break;
-            view.alertUserWrongDirection(); // may change
-        }
-        ...parse and set request content
-
-        return request;
-    }
+    encupsulate all operations into one public function
     */
-    public Request getUserRequest(){
+    public Request validate(Player currentPlayer, InputForm form){
         return null;
     }
-
-    /*
+    /* 
     TODO
     following 2 functions can be set to private functions 
     */
@@ -69,10 +46,6 @@ public class Controller {
 
     private Coordinate parsePiece(){
         // if userPiece pass validatePiece, parse to coordinate
-        return null;
-    }
-
-    public Player[] getUserInfo() {
         return null;
     }
 }

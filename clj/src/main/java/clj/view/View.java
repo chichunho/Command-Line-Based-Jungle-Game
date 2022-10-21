@@ -3,6 +3,8 @@ package clj.view;
 import java.io.File;
 import java.util.Scanner;
 
+import clj.controller.Player;
+
 public class View {
 
     private String[] messageArray;
@@ -23,5 +25,13 @@ public class View {
     }
 
     public void updateView(){
+    }
+
+    public InputForm getUserInput() {
+        return null;
+    }
+
+    public Player[] getUserInfo() {
+        return null;
     }
 }

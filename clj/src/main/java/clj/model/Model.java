@@ -2,7 +2,6 @@ package clj.model;
 
 import clj.controller.Request;
 import clj.controller.Coordinate;
-import clj.controller.Player;
 import clj.view.View;
 
 public class Model {
@@ -15,7 +14,7 @@ public class Model {
         this.view = view;
     }
 
-    public Response run(Player player, Request request){
+    public Response run(Request request){
         return null;
     }
 

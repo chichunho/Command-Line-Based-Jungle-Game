@@ -7,6 +7,8 @@ public class Request {
 
     private Coordinate coordinate;
 
+    private Player player;
+
     protected Request(){
         this.dx = 0;
         this.dy = 0;
@@ -41,9 +43,13 @@ public class Request {
         return coordinate;
     }
 
+    protected void setPlayer(Player player){
+        this.player = player;
+    }
 
-
-
+    public Player getPlayer(){
+        return this.player;
+    }
 
 
 }
