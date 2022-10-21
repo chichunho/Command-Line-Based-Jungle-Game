@@ -14,6 +14,11 @@ public class Coordinate {
         this.y = temp[1];
     }
 
+    public Coordinate(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
     // code for convertToAbs
     /* 
     private int getPosX(String pos){

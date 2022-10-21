@@ -5,9 +5,10 @@ public class Response {
     private String[] arguments;
     private boolean isEndGame;
     
-    protected Response(){
-        this.messageId = -1;
-        this.isEndGame = false;
+    protected Response(int messageId, String[] arguments, boolean isEndGame){
+        this.messageId = messageId;
+        this.arguments = arguments;
+        this.isEndGame = isEndGame;
     }
 
     public int getMsgId(){
