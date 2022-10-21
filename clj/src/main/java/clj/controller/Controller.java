@@ -6,9 +6,6 @@ public class Controller {
     
     View view;
 
-    private String userPiece;
-    private String userDirect;
-
     public Controller(View view){
         this.view = view;
     }
@@ -30,6 +27,7 @@ public class Controller {
     Actually you can encupsulate all operations into one public function getUserInput()
     sth like:
     public Request getUserInput(){
+        // moved the private variables to here
         Request request = new Request();
         String coord;
         String direction;
@@ -51,7 +49,7 @@ public class Controller {
         return request;
     }
     */
-    public Request getUserInput(){
+    public Request getUserRequest(){
         return null;
     }
 
@@ -64,25 +62,17 @@ public class Controller {
      * convert userinput to coordinate
      *
      */
-    private void parseDirect() {
+    private int[] parseDirection() {
         //IF userDirect pass validateDirect(), parse to request dx,dy
-
+        return null;
     }
 
-    private void parsePiece(){
+    private Coordinate parsePiece(){
         // if userPiece pass validatePiece, parse to coordinate
-
+        return null;
     }
 
     public Player[] getUserInfo() {
         return null;
     }
-
-    public Request getUserRequest() {
-        return null;
-    }
-
-
-
-
 }
