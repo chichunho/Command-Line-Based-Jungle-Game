@@ -21,7 +21,6 @@ public class Player implements Party{
 
     @Override
     public int getParty() {
-        // TODO Auto-generated method stub
-        return -1;
+        return this.party;
     }
 }

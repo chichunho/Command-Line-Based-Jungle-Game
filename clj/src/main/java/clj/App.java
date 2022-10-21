@@ -23,9 +23,9 @@ public class App
         Player[] players;
         Player currentPlayer;
 
-        players = controller.getUserInfo();
-
         int turn = 0;
+
+        players = controller.getUserInfo();
 
         while(!isEndGame){
             currentPlayer = players[turn%2];
