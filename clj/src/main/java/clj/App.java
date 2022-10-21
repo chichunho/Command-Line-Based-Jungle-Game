@@ -5,7 +5,6 @@ import clj.controller.Player;
 import clj.controller.Request;
 import clj.model.Model;
 import clj.model.Response;
-import clj.view.InputForm;
 import clj.view.View;
 
 public class App 
@@ -18,7 +17,6 @@ public class App
 
         boolean isEndGame = false;
 
-        InputForm form;
         Request request;
         Response response;
 
@@ -27,13 +25,12 @@ public class App
 
         int turn = 0;
 
-        players = view.getUserName();
+        players = controller.getUserInfo();
 
         while(!isEndGame){
             currentPlayer = players[turn%2];
 
-            form = view.getUserInput();
-            request = controller.validate(currentPlayer, form);
+            request = controller.getUserRequest(currentPlayer);
             response = model.run(request);
             isEndGame = response.getIsEndGame();
         }

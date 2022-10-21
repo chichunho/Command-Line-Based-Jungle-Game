@@ -1,6 +1,5 @@
 package clj.controller;
 
-import clj.view.InputForm;
 import clj.view.View;
 
 public class Controller {
@@ -27,7 +26,7 @@ public class Controller {
     TODO
     encupsulate all operations into one public function
     */
-    public Request validate(Player currentPlayer, InputForm form){
+    public Request getUserRequest(Player currentPlayer){
         return null;
     }
     /* 
@@ -46,6 +45,10 @@ public class Controller {
 
     private Coordinate parsePiece(){
         // if userPiece pass validatePiece, parse to coordinate
+        return null;
+    }
+
+    public Player[] getUserInfo() {
         return null;
     }
 }
