@@ -27,7 +27,7 @@ public class App
 
         int turn = 0;
 
-        players = view.getUserInfo();
+        players = view.getUserName();
 
         while(!isEndGame){
             currentPlayer = players[turn%2];

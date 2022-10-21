@@ -31,7 +31,7 @@ public class View {
         return null;
     }
 
-    public Player[] getUserInfo() {
+    public Player[] getUserName() {
         return null;
     }
 }

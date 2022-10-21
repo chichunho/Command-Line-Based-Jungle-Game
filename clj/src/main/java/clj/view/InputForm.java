@@ -2,8 +2,8 @@ package clj.view;
 
 public class InputForm {
 
-    String piecePos;
-    char direction;
+    private String piecePos;
+    private char direction;
 
     public InputForm(){}
 
