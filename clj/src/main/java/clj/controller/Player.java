@@ -1,4 +1,4 @@
-package clj;
+package clj.controller;
 
 import clj.model.Party;
 

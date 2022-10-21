@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:clj/src/main/java/clj/controller/Coordinate.java
 package clj.controller;
-========
-package clj;
->>>>>>>> model:clj/src/main/java/clj/Coordinate.java
 
 public class Coordinate {
 
@@ -18,11 +14,10 @@ public class Coordinate {
         this.y = temp[1];
     }
 
-<<<<<<<< HEAD:clj/src/main/java/clj/controller/Coordinate.java
     public Coordinate(){
         this.x = 0;
         this.y = 0;
-========
+    }
     /**
      * Constructor of object Coordinate
      * Provide a copy function
@@ -32,7 +27,6 @@ public class Coordinate {
     public Coordinate(Coordinate old){
         this.x = old.getX();
         this.y = old.getY();
->>>>>>>> model:clj/src/main/java/clj/Coordinate.java
     }
 
     // code for convertToAbs

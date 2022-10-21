@@ -1,5 +1,6 @@
 package clj.controller;
 
+import clj.view.View;
 
 public class Controller {
     
@@ -71,6 +72,14 @@ public class Controller {
     private void parsePiece(){
         // if userPiece pass validatePiece, parse to coordinate
 
+    }
+
+    public Player[] getUserInfo() {
+        return null;
+    }
+
+    public Request getUserRequest() {
+        return null;
     }
 
 
