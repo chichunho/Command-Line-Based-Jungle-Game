@@ -9,7 +9,7 @@ public class Request {
 
     private Player player;
 
-    protected Request(Player player, Coordinate coordinate, int dx, int dy){
+    public Request(Player player, Coordinate coordinate, int dx, int dy){
         this.dx = 0;
         this.dy = 0;
         this.coordinate = coordinate;
