@@ -1,6 +1,5 @@
 package clj.model;
 import clj.controller.Coordinate;
-import clj.controller.PlayerTest;
 import clj.view.View;
 import clj.controller.Request;
 import org.junit.Before;
