@@ -10,8 +10,12 @@ public class Model {
     View view;
 
     public Model(View view){
-        board = new Board();
+        this.board = new Board();
         this.view = view;
+    }
+
+    public  Board getBoard(){
+        return board;
     }
 
     public Response run(Request request){

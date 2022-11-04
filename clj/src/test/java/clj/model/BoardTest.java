@@ -2,11 +2,11 @@ package clj.model;
 
 import clj.controller.Coordinate;
 
-public class BoardTest{
+public class BoardTest {
 
     private Piece[][] pieces = new Piece[9][7];
     private BoardObj[][] terrain = new BoardObj[9][7];
-    private int[] pieceCount;
+    private int pieceCount;
 
     protected BoardTest(){
 
@@ -49,22 +49,15 @@ public class BoardTest{
         return null;
     }
 
-    protected int move(Piece piece, Coordinate pos){
+    protected int move(Coordinate from, Coordinate to){
         return 0;
     }
 
-    /*Belows are functions used in testing only*/
-
-    public Piece testPick(Coordinate pos){
-        return pieces[pos.getY()][pos.getX()];
+    /* Functions below are for testing only */
+    public void testSkip(Coordinate tigerPos, Coordinate tigerNewPos) {
     }
 
-    public int[] testGetPieceCount(){
-        return this.pieceCount;
-    }
-
-    public void testMove(Coordinate from, Coordinate to){
-        pieces[to.getY()][to.getX()] = pieces[from.getY()][from.getX()];
-        pieces[from.getY()][from.getX()] = null;
+    public int[] testGetPieceCount() {
+        return null;
     }
 }

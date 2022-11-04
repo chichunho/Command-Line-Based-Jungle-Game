@@ -148,13 +148,13 @@ public class CaptureTest {
         Coordinate tigerPos = new Coordinate(8, 0);
         // the new position for tiger
         Coordinate tigerNewPos = new Coordinate(3, 0);
-        // move it to (3, 0)
-        board.testMove(tigerPos, tigerNewPos);
+        // move it directly to (3, 0)
+        board.testSkip(tigerPos, tigerNewPos);
 
         // there is a enemy rat in front of the tiger
         Coordinate tigerDest = new Coordinate(2, 0);
         // capture the enemy rat
-        board.testMove(tigerNewPos, tigerDest);
+        board.move(tigerNewPos, tigerDest);
         // get the piece count from the board
         int[] pieceCount = board.testGetPieceCount();
         // the piece count of opposite party shall decreased from 8 to 7
