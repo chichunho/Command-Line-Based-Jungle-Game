@@ -2,7 +2,7 @@ package clj.model;
 
 import clj.controller.Coordinate;
 
-public class BoardTest {
+public class Board {
 
     private Piece[][] Pieces = new Piece[9][7];
     private BoardObj[][] terrain = new BoardObj[9][7];
