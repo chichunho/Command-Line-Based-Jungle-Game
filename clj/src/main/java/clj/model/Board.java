@@ -6,6 +6,7 @@ public class Board {
 
     private Piece[][] Pieces = new Piece[9][7];
     private BoardObj[][] terrain = new BoardObj[9][7];
+    private int pieceCount;
 
     protected Board(){
 
@@ -48,8 +49,8 @@ public class Board {
         return null;
     }
 
-    protected void move(Piece piece, Coordinate pos){
-
+    protected int move(Piece piece, Coordinate pos){
+        return 0;
     }
 
     
