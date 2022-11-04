@@ -5,7 +5,7 @@ import clj.controller.Coordinate;
 import org.junit.Test;
 
 
-public class InitializeTest
+public class UnitTestInitializeTest
 {
     
 

@@ -6,7 +6,7 @@ public class Board {
 
     private Piece[][] Pieces = new Piece[9][7];
     private BoardObj[][] terrain = new BoardObj[9][7];
-    private int pieceCount;
+    private int[] pieceCount;
 
     protected Board(){
 

@@ -11,7 +11,7 @@ import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
-public class CaptureTest {
+public class UnitTestCaptureTest {
 
     PieceTest[] p1Pieces;
     PieceTest[] p2Pieces;
