@@ -4,7 +4,7 @@ import clj.controller.Coordinate;
 
 public class BoardTest{
 
-    private Piece[][] Pieces = new Piece[9][7];
+    private PieceTest[][] Pieces = new PieceTest[9][7];
     private BoardObj[][] terrain = new BoardObj[9][7];
     private int pieceCount;
 
@@ -54,5 +54,13 @@ public class BoardTest{
     }
 
     /*Belows are functions used in testing only*/
+
+    public void setPiece(PieceTest piece, Coordinate pos){
+        Pieces[pos.getY()][pos.getX()] = piece;
+
+    }
+    public String getPosPiece(Coordinate pos){
+        return Pieces[pos.getY()][pos.getX()].getAnimal();
+    }
 
 }

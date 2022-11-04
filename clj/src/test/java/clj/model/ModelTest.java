@@ -4,14 +4,19 @@ import clj.controller.Request;
 import clj.controller.Coordinate;
 import clj.view.View;
 
-public class Model {
+public class ModelTest {
     
     Board board;
     View view;
 
-    public Model(View view){
+    public ModelTest(View view){
         board = new Board();
         this.view = view;
+    }
+
+    public ModelTest(){
+        board = new Board();
+        this.view = null;
     }
 
     public Response run(Request request){
@@ -29,4 +34,11 @@ public class Model {
     private boolean play(Coordinate from, Coordinate to){
         return false;
     }
+
+    /*
+    temp testing function
+     */
+
+    public boolean testPlay(Coordinate form, int dx, int dy){return false; }
+
 }
