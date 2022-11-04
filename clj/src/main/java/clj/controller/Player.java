@@ -7,7 +7,7 @@ public class Player implements Party{
     private String name;
     private int party;
 
-    public Player(String name, int party){
+    protected Player(String name, int party){
         this.name = name;
     }
 
