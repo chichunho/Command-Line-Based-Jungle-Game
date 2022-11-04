@@ -6,14 +6,14 @@ public class Response {
     private int messageId;
     private String[] arguments;
     private boolean isEndGame;
-    private Coordinate[] location;
+    private Coordinate[] pieceLocation;
     private int[] pieceCount;
     
-    protected Response(int messageId, String[] arguments, int[] pieceCount, Coordinate[] location, boolean isEndGame){
+    protected Response(int messageId, String[] arguments, int[] pieceCount, Coordinate[] pieceLocation, boolean isEndGame){
         this.messageId = messageId;
         this.arguments = arguments;
         this.pieceCount = pieceCount;
-        this.location = location;
+        this.pieceLocation = pieceLocation;
         this.isEndGame = isEndGame;
     }
 
@@ -30,7 +30,7 @@ public class Response {
     }
 
     public Coordinate[] getLocation(){
-        return this.location;
+        return this.pieceLocation;
     }
 
     public boolean getIsEndGame(){

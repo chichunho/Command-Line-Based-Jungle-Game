@@ -54,5 +54,11 @@ public class Board {
         return 0;
     }
 
-    
+    public int[] getPieceCount(){
+        return this.pieceCount;
+    }
+
+    public Coordinate[] getPieceLocation(){
+        return this.pieceLocation;
+    }
 }
