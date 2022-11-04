@@ -29,4 +29,8 @@ public class Model {
     private boolean play(Coordinate from, Coordinate to){
         return false;
     }
+
+    private boolean isOutOfBound(Coordinate pos, int dx, int dy){
+        return false;
+    }
 }

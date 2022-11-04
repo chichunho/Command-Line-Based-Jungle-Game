@@ -7,9 +7,9 @@ public class Response {
     private String[] arguments;
     private boolean isEndGame;
     private Coordinate[] location;
-    private int pieceCount;
+    private int[] pieceCount;
     
-    protected Response(int messageId, String[] arguments, int pieceCount, Coordinate[] location, boolean isEndGame){
+    protected Response(int messageId, String[] arguments, int[] pieceCount, Coordinate[] location, boolean isEndGame){
         this.messageId = messageId;
         this.arguments = arguments;
         this.pieceCount = pieceCount;
@@ -25,7 +25,7 @@ public class Response {
         return this.arguments;
     }
 
-    public int getPieceCount(){
+    public int[] getPieceCount(){
         return this.pieceCount;
     }
 
