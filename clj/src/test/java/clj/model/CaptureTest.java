@@ -1,29 +1,37 @@
 package clj.model;
 
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
+
 import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
 public class CaptureTest {
 
-    PieceTest[] p1Pieces = {new ElephantTest(1),
-                            new LionTest(1),
-                            new TigerTest(1),
-                            new LeopardTest(1),
-                            new WolfTest(1),
-                            new DogTest(1),
-                            new CatTest(1),
-                            new RatTest(1)};
+    PieceTest[] p1Pieces;
+    PieceTest[] p2Pieces;
+    @Before
+    public void init(){
+        PieceTest[] p1Pieces = {new ElephantTest(1),
+            new LionTest(1),
+            new TigerTest(1),
+            new LeopardTest(1),
+            new WolfTest(1),
+            new DogTest(1),
+            new CatTest(1),
+            new RatTest(1)};
 
-    PieceTest[] p2Pieces = {new ElephantTest(2),
-                            new LionTest(2),
-                            new TigerTest(2),
-                            new LeopardTest(2),
-                            new WolfTest(2),
-                            new DogTest(2),
-                            new CatTest(2),
-                            new RatTest(2)};
+        PieceTest[] p2Pieces = {new ElephantTest(2),
+            new LionTest(2),
+            new TigerTest(2),
+            new LeopardTest(2),
+            new WolfTest(2),
+            new DogTest(2),
+            new CatTest(2),
+            new RatTest(2)};
+    }
 
     @Test
     public void captureEnemyPieces(){
