@@ -7,7 +7,7 @@ import clj.model.Model;
 import org.junit.Test;
 
 
-public class BoardTest
+public class InitializeTest
 {
     clj.view.View testView;
     clj.model.Model testModel = new Model(testView);
