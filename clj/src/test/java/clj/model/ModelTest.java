@@ -35,10 +35,14 @@ public class ModelTest {
         return false;
     }
 
-    /*
-    temp testing function
-     */
+    private boolean isOutOfBound(Coordinate pos, int dx, int dy){
+        return false;
+    }
 
-    public boolean testPlay(Coordinate form, int dx, int dy){return false; }
+    /* Functions below are for testing only */
+
+    public boolean testIsOutOfBound(Coordinate pos, int dx, int dy){
+        return isOutOfBound(pos, dx, dy);
+    }
 
 }
