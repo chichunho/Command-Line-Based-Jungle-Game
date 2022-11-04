@@ -1,6 +1,10 @@
-package clj.model;
+package clj;
 
-
+import clj.controller.Coordinate;
+import clj.controller.Player;
+import clj.controller.Request;
+import clj.model.Model;
+import clj.model.Response;
 import clj.view.View;
 
 import org.junit.After;
@@ -14,7 +18,6 @@ Tests for checking winner
  */
 
 public class WinTest {
-    Player testPlayer = new Player("PLayer1", 0);
     /**
      *          ————————————————
      *          | C1 | DEN| C2 |
@@ -26,11 +29,12 @@ public class WinTest {
      *  Coordinate c2 is position from the right of den
      *  Coordinate c3 is position from the bottom of den
      */
-    clj.model.Coordinate c1,c2,c3;
-    clj.model.Request testRequest;
     View testView;
     Model testModel = new Model(testView);
 
+    Coordinate c1,c2,c3;
+    Request testRequest;
+    Player testPlayer;
     Response testResponse;
 
     @Before
@@ -47,7 +51,7 @@ public class WinTest {
     }
     @Test
     public void testPiecesToDen(){
-        testRequest = new clj.model.Request (testPlayer, c1, 0,-1);
+        testRequest = new Request(testPlayer, c1, 0,-1);
         testResponse = testModel.run(testRequest);
         assertTrue(testResponse.getIsEndGame());
 
