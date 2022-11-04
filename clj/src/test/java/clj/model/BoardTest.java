@@ -4,9 +4,9 @@ import clj.controller.Coordinate;
 
 public class BoardTest{
 
-    private Piece[][] Pieces = new Piece[9][7];
+    private Piece[][] pieces = new Piece[9][7];
     private BoardObj[][] terrain = new BoardObj[9][7];
-    private int pieceCount;
+    private int[] pieceCount;
 
     protected BoardTest(){
 
@@ -55,4 +55,16 @@ public class BoardTest{
 
     /*Belows are functions used in testing only*/
 
+    public Piece testPick(Coordinate pos){
+        return pieces[pos.getY()][pos.getX()];
+    }
+
+    public int[] testGetPieceCount(){
+        return this.pieceCount;
+    }
+
+    public void testMove(Coordinate from, Coordinate to){
+        pieces[to.getY()][to.getX()] = pieces[from.getY()][from.getX()];
+        pieces[from.getY()][from.getX()] = null;
+    }
 }
