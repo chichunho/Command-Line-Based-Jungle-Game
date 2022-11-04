@@ -11,6 +11,8 @@ public class BoardTest
 {
     clj.view.View testView;
     clj.model.Model testModel = new Model(testView);
+    
+    // This is to test is that all pieces are initialized at the correct squares)
 
     @Test
     public void BoardInitializeTest()
