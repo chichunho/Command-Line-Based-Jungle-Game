@@ -4,7 +4,7 @@ import clj.controller.Request;
 import clj.controller.Coordinate;
 import clj.view.View;
 
-public class ModelTest {
+public class Model {
     
     Board board;
     View view;
