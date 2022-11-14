@@ -39,7 +39,11 @@ public class Coordinate {
      * @return          An integer array with length 2, [0]->x, [1]->y
      */
     private int[] convertToAbs(String pos){
-        return null;
+        int temp[] = new int [2];
+        temp[0] = Integer.parseInt(pos.charAt(0));
+        temp[1] = Integer.parseInt(pos.charAt(1));
+
+        return temp;
     }
 
     public int getX(){
