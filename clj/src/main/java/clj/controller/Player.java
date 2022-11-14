@@ -9,10 +9,11 @@ public class Player implements Party{
 
     public Player(String name, int party){
         this.name = name;
+        this.party = party;
     }
 
     public String getName(){
-        return null;
+        return this.name;
     }
 
     @Override
