@@ -55,9 +55,9 @@ public abstract class Piece implements Party{
      * Any pieces located in the mid way will stop the searching and return the coordinate
      * where it meet the piece.
      * @param   dest    The destination decided by the user
-     * @return  A Coordinate object of the final destination decided by the game logic
+     * @return          A Coordinate object of the final destination decided by the game logic
      */
-    abstract protected Coordinate calFinalDest(Coordinate dest);
+    abstract protected Coordinate calFinalDest(Coordinate dest, Board baord, int dx, int dy);
 
     /**
      * This function determines if this piece can capture another piece
@@ -72,4 +72,13 @@ public abstract class Piece implements Party{
      * @return          A boolean value
      */
     abstract protected boolean canMoveTo(BoardObj dest);
+
+    /**
+     * This function override the default toString(),
+     * only used for printing output,
+     * for internal use, call method getAnimal() instead
+     * @return          A Chinese character representing this piece
+     */
+    @Override
+    abstract public String toString();
 }
