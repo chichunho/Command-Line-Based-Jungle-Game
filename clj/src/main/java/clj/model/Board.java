@@ -83,8 +83,8 @@ public class Board {
      * @param pos   The position of the terrain
      * @return      A String object represent the type of terrain
      */
-    public String at(Coordinate pos){
-        return terrain[pos.getY()][pos.getX()].getType();
+    public BoardObj at(Coordinate pos){
+        return terrain[pos.getY()][pos.getX()];
     }
 
     protected int move(Piece piece, Coordinate pos){

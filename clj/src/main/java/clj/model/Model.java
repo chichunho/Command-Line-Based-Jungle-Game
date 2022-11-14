@@ -15,6 +15,24 @@ public class Model {
     }
 
     public Response run(Request request){
+        Piece pickedPiece = this.board.pick(request.getCoord());
+        Coordinate dest = new Coordinate(request.getCoord().getX()+request.getDx(), request.getCoord().getY()+request.getDy());
+        dest = pickedPiece.calFinalDest(dest, board, request.getDx(), request.getDy());
+
+        if (isOutOfBound(dest)){
+            String[] arguments= {Integer.toString(dest.getX()), Integer.toString(dest.getY())};
+            Response response = new Response(1 ,arguments , board.getPieceCount(), false);
+            return response;
+        }
+
+        if (!pickedPiece.canMoveTo(board.at(dest))){
+
+        }
+
+        if (!pickedPiece.canCapture(board.pick(dest))){
+            
+        }
+
         return null;
     }
 
@@ -30,7 +48,7 @@ public class Model {
         return false;
     }
 
-    private boolean isOutOfBound(Coordinate pos, int dx, int dy){
+    private boolean isOutOfBound(Coordinate pos){
         return false;
     }
 }

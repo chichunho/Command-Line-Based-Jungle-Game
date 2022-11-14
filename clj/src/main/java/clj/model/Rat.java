@@ -19,10 +19,12 @@ public class Rat extends Piece{
         if (another.isTrapped()){
             return true;
         }
-        if (another.getAnimal().equals("Elephant")){
+        if (another.getAnimal().equals("Elephant") &&
+            !this.isInWater()){
             return true;
         }
-        if (this.getRank() >= another.getRank()){
+        if (another.getAnimal().equals("Rat") &&
+            this.isInWater() == another.isInWater()){
             return true;
         }
 

@@ -28,7 +28,7 @@ public class Request {
         return coordinate;
     }
 
-    public Player getPlayer(){
-        return this.player;
+    public int getPlayerParty(){
+        return this.player.getParty();
     }
 }
