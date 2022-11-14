@@ -2,12 +2,12 @@ package clj.model;
 
 import clj.controller.Coordinate;
 
-public class Cat extends Piece{
+public class LionTest extends PieceTest{
 
-    protected Cat(int party){
-        super("Cat", 2, party);
+    protected LionTest(int party){
+        super("Lion", 7, party);
     }
-    
+
     @Override
     protected Coordinate calFinalDest(Coordinate dest) {
         // TODO Auto-generated method stub
@@ -15,15 +15,14 @@ public class Cat extends Piece{
     }
 
     @Override
-    protected boolean canCapture(Piece another) {
+    protected boolean canCapture(PieceTest another) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    protected boolean canMoveTo(BoardObj dest) {
+    protected boolean canMoveTo(BoardObjTest dest) {
         // TODO Auto-generated method stub
         return false;
     }
-    
 }

@@ -1,15 +1,16 @@
 package clj.model;
 
+import clj.controller.RequestTest;
 import clj.controller.Request;
 import clj.controller.Coordinate;
 import clj.view.View;
 
-public class Model {
+public class ModelTest {
     
     Board board;
     View view;
 
-    public Model(View view){
+    public ModelTest(View view){
         board = new Board();
         this.view = view;
     }
@@ -32,5 +33,15 @@ public class Model {
 
     private boolean isOutOfBound(Coordinate pos, int dx, int dy){
         return false;
+    }
+
+    /* Functions below are for testing only */
+
+    public boolean testIsOutOfBound(Coordinate pos, int dx, int dy){
+        return isOutOfBound(pos, dx, dy);
+    }
+
+    public Response run(RequestTest request){
+        return null;
     }
 }

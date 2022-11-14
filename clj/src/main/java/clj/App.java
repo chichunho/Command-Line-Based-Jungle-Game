@@ -1,7 +1,10 @@
 package clj;
 
 import clj.controller.Controller;
+import clj.controller.Player;
+import clj.controller.Request;
 import clj.model.Model;
+import clj.model.Response;
 import clj.view.View;
 
 public class App 
@@ -20,15 +23,15 @@ public class App
         Player[] players;
         Player currentPlayer;
 
-        players = controller.getUserInfo();
-
         int turn = 0;
+
+        players = controller.getUserInfo();
 
         while(!isEndGame){
             currentPlayer = players[turn%2];
 
-            request = controller.getUserRequest();
-            response = Model.run(currentPlayer, request);
+            request = controller.getUserRequest(currentPlayer);
+            response = model.run(request);
             isEndGame = response.getIsEndGame();
         }
 

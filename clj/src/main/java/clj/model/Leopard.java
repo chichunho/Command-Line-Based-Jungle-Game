@@ -1,6 +1,6 @@
 package clj.model;
 
-import clj.Coordinate;
+import clj.controller.Coordinate;
 
 public class Leopard extends Piece{
 

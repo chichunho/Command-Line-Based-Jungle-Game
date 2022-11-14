@@ -2,14 +2,13 @@ package clj.model;
 
 import clj.controller.Coordinate;
 
-public class Board {
+public class BoardTest {
 
-    private Piece[][] Pieces = new Piece[9][7];
+    private PieceTest[][] pieces = new PieceTest[9][7];
     private BoardObj[][] terrain = new BoardObj[9][7];
-    private int[] pieceCount;
-    private Coordinate[] pieceLocation;
+    private int pieceCount;
 
-    protected Board(){
+    protected BoardTest(){
 
         /*
         // initialized the board, cover it with Land
@@ -50,15 +49,32 @@ public class Board {
         return null;
     }
 
-    protected int move(Piece piece, Coordinate pos){
+    protected int move(Coordinate from, Coordinate to){
         return 0;
     }
 
-    public int[] getPieceCount(){
-        return this.pieceCount;
+    /* Functions below are for testing only */
+
+    public void testSkip(Coordinate tigerPos, Coordinate tigerNewPos) {
     }
 
-    public Coordinate[] getPieceLocation(){
-        return this.pieceLocation;
+    public int[] testGetPieceCount() {
+        return null;
     }
+    public void testSetPiece(PieceTest piece, Coordinate pos){
+        pieces[pos.getY()][pos.getX()] = piece;
+
+    }
+    public String testGetPosPiece(Coordinate pos){
+        return pieces[pos.getY()][pos.getX()].getAnimal();
+    }
+
+    public void testEmptyBoardPieces(){
+        for (int i = 0; i < 9; i++){
+            for (int j = 0; j < 7; j++){
+                pieces[i][j] = null;
+            }
+        }
+    }
+
 }

@@ -2,7 +2,7 @@ package clj.model;
 
 import clj.controller.Coordinate;
 
-public abstract class Piece implements Party{
+public abstract class PieceTest implements Party{
 
     private final String animal;
     private final int rank;
@@ -10,7 +10,7 @@ public abstract class Piece implements Party{
     private boolean trapped = false;
     private boolean inWater = false;
 
-    protected Piece(String animal, int rank, int party){
+    protected PieceTest(String animal, int rank, int party){
         this.animal = animal;
         this.rank = rank;
         this.party = party;
@@ -64,12 +64,22 @@ public abstract class Piece implements Party{
      * @param another   Another piece
      * @return          A boolean value
      */
-    abstract protected boolean canCapture(Piece another);
+    abstract protected boolean canCapture(PieceTest another);
 
     /**
      * This function determine if this piece can move to the destination
      * @param dest      A Coordinate object of the destination
      * @return          A boolean value
      */
-    abstract protected boolean canMoveTo(BoardObj dest);
+    abstract protected boolean canMoveTo(BoardObjTest dest);
+
+    /* Below are functions used in testing only */
+
+    public void testSetTrapped(boolean trapped){
+        this.trapped = trapped;
+    }
+
+    public void testSetInWater(boolean inWater){
+        this.inWater = inWater;
+    }
 }

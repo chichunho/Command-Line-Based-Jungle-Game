@@ -1,4 +1,4 @@
-package clj;
+package clj.controller;
 
 public class Coordinate {
 
@@ -14,15 +14,9 @@ public class Coordinate {
         this.y = temp[1];
     }
 
-    /**
-     * Constructor of object Coordinate
-     * Provide a copy function
-     * @param pos
-     * @return
-     */
-    public Coordinate(Coordinate old){
-        this.x = old.getX();
-        this.y = old.getY();
+    public Coordinate(int x, int y){
+        this.x = x;
+        this.y = y;
     }
 
     // code for convertToAbs
@@ -54,13 +48,5 @@ public class Coordinate {
 
     public int getY(){
         return this.y;
-    }
-
-    public void setX(int x){
-        this.x = x;
-    }
-
-    public void setY(int y){
-        this.y = y;
     }
 }

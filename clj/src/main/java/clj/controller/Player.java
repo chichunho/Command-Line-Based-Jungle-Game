@@ -1,4 +1,4 @@
-package clj;
+package clj.controller;
 
 import clj.model.Party;
 
@@ -7,12 +7,8 @@ public class Player implements Party{
     private String name;
     private int party;
 
-    public Player(String name){
+    protected Player(String name, int party){
         this.name = name;
-    }
-
-    public void setParty(int party){
-        this.party = party;
     }
 
     public String getName(){
@@ -21,7 +17,6 @@ public class Player implements Party{
 
     @Override
     public int getParty() {
-        // TODO Auto-generated method stub
-        return -1;
+        return this.party;
     }
 }

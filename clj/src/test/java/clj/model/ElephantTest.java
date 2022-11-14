@@ -2,14 +2,14 @@ package clj.model;
 
 import clj.controller.Coordinate;
 
-public class Elephant extends Piece{
+public class ElephantTest extends PieceTest{
     
-    protected Elephant(int party){
+    protected ElephantTest(int party){
         super("Elephant", 8, party);
     }
 
     @Override
-    protected boolean canCapture(Piece another){
+    protected boolean canCapture(PieceTest another){
         
         /* 
         // if there is no enemy piece
@@ -37,7 +37,7 @@ public class Elephant extends Piece{
     }
 
     @Override
-    protected boolean canMoveTo(BoardObj dest){
+    protected boolean canMoveTo(BoardObjTest dest){
         
         /*
         // if the destination is water
