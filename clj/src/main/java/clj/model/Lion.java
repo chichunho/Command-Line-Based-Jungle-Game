@@ -20,33 +20,32 @@ public class Lion extends Piece{
     }
 
     @Override
-    protected boolean canCapture(Piece another) {
+    protected int canCapture(Piece another) {
         if (another == null){
-            return true;
+            return 0;
         }
         if (another.getParty() == this.getParty()){
-            return false;
-        }
-        if (another.isTrapped()){
-            return true;
-        }
-        if (this.getRank() >= another.getRank()){
-            return true;
+            return 1;
         }
 
-        return false;
+        if (this.getRank() < another.getRank() &&
+            !another.isTrapped()){
+            return 2;
+        }
+
+        return 0;
     }
 
     @Override
-    protected boolean canMoveTo(BoardObj dest) {
+    protected int canMoveTo(BoardObj dest) {
         if (dest.getType().equals("Den") &&
             dest.getParty() == this.getParty()){
-                return false;
+                return 1;
         }
         if (dest.getType().equals("Water")){
-            return false;
+            return 2;
         }
-        return true;
+        return 0;
     }
 
     @Override

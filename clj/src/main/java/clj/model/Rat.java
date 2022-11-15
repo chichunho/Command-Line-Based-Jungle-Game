@@ -9,35 +9,36 @@ public class Rat extends Piece{
     }
 
     @Override
-    protected boolean canCapture(Piece another) {
+    protected int canCapture(Piece another) {
         if (another == null){
-            return true;
+            return 0;
         }
         if (another.getParty() == this.getParty()){
-            return false;
-        }
-        if (another.isTrapped()){
-            return true;
+            return 1;
         }
         if (another.getAnimal().equals("Elephant") &&
-            !this.isInWater()){
-            return true;
+            this.isInWater()){
+            return 3;
         }
         if (another.getAnimal().equals("Rat") &&
-            this.isInWater() == another.isInWater()){
-            return true;
+            this.isInWater() != another.isInWater()){
+            return 4;
+        }
+        if (this.getRank() < another.getRank() &&
+            !another.isTrapped()){
+            return 2;
         }
 
-        return false;
+        return 0;
     }
 
     @Override
-    protected boolean canMoveTo(BoardObj dest) {
+    protected int canMoveTo(BoardObj dest) {
         if (dest.getType().equals("Den") &&
             dest.getParty() == this.getParty()){
-                return false;
+                return 1;
         }
-        return true;
+        return 0;
     }
 
     @Override

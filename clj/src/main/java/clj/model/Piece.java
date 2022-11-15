@@ -64,14 +64,14 @@ public abstract class Piece implements Party{
      * @param another   Another piece
      * @return          A boolean value
      */
-    abstract protected boolean canCapture(Piece another);
+    abstract protected int canCapture(Piece another);
 
     /**
      * This function determine if this piece can move to the destination
      * @param dest      A Coordinate object of the destination
      * @return          A boolean value
      */
-    abstract protected boolean canMoveTo(BoardObj dest);
+    abstract protected int canMoveTo(BoardObj dest);
 
     /**
      * This function override the default toString(),

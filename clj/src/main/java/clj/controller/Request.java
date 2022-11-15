@@ -31,4 +31,8 @@ public class Request {
     public int getPlayerParty(){
         return this.player.getParty();
     }
+
+    public String getPlayerName(){
+        return this.player.getName();
+    }
 }

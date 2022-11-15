@@ -87,15 +87,40 @@ public class Board {
         return terrain[pos.getY()][pos.getX()];
     }
 
-    protected int move(Piece piece, Coordinate pos){
-        return 0;
+    /**
+     * This function simulate the process of a player plays his/her movement.
+     * This function will remove any piece at the destination and 
+     * replaced by the piece picked up by the user.
+     * The flags of the piece will be modified by this function internally.
+     * @param from      The position of the piece that picked up by the player
+     * @param to        The destination
+     */
+    protected void move(Coordinate from, Coordinate to){
+        if (pieces[to.getY()][to.getX()] != null){
+            int targetParty = pieces[to.getY()][to.getX()].getParty();
+            pieceCount[targetParty]--;
+        }
+        pieces[to.getY()][to.getX()] = pieces[from.getY()][from.getX()];
+        pieces[from.getY()][from.getX()] = null;
+        if (terrain[to.getY()][to.getX()].getType().equals("Water")){
+            pieces[to.getY()][to.getX()].setInWater(true);
+        }
+        else{
+            pieces[to.getY()][to.getX()].setInWater(false);
+        }
+        if (terrain[to.getY()][to.getX()].getType().equals("Trap")){
+            pieces[to.getY()][to.getX()].setTrapped(true);
+        }
+        else{
+            pieces[to.getY()][to.getX()].setTrapped(false);
+        }
     }
 
     public int[] getPieceCount(){
         return this.pieceCount;
     }
 
-    public Piece[][] getPieceLocation(){
+    public Piece[][] getPiecesLocation(){
         return this.pieces;
     }
 }
