@@ -62,12 +62,12 @@ public class Controller {
         Request userReq;
 
         do {
-            System.out.Println("\rPlease selected Piece:\n");
+            System.out.Println("\rPlease select Piece:\n");
             userInputPiece = nextLine();
         }while(validatePiece(userInputPiece)==false);
 
         do {
-            System.out.Println("\rPlease selected Direction:\n");
+            System.out.Println("\rPlease select Direction:\n");
             userInputDirect = nextLine();
         }while(validateDirection(userInputDirect)==false);
 
