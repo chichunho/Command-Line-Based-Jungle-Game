@@ -33,6 +33,7 @@ public class App
             request = controller.getUserRequest(currentPlayer);
             response = model.run(request);
             isEndGame = response.getIsEndGame();
+            turn++;
         }
 
         /*TODO print some message to notice the players the game has ended */

@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -19,6 +18,9 @@ public class UnitTestCaptureTest {
 
     @Before
     public void init(){
+        p1Pieces = new PieceTest[8];
+        p2Pieces = new PieceTest[8];
+
         p1Pieces[0] = new ElephantTest(1);
         p1Pieces[1] = new LionTest(1);
         p1Pieces[2] = new TigerTest(1);
@@ -51,13 +53,13 @@ public class UnitTestCaptureTest {
         for (int i = 0; i < 8; i++){
             // for each animal j
             for (int j = 0; j < 8; j++){
-                // if the rank of j is equal or lower than animal i, the function shall return true
+                // if the rank of j is equal or lower than animal i, the function shall return 0
                 if (i <= j){
-                    assertTrue(p1Pieces[i].canCapture(p2Pieces[j]));
+                    assertEquals(p1Pieces[i].canCapture(p2Pieces[j]), 0);
                 }
-                // otherwise, it shall return false
+                // otherwise, it shall return 2
                 else{
-                    assertFalse(p1Pieces[i].canCapture(p2Pieces[j]));
+                    assertEquals(p1Pieces[i].canCapture(p2Pieces[j]), 2);
                 }
             }
         }
@@ -71,8 +73,8 @@ public class UnitTestCaptureTest {
      */
     @Test
     public void captureFriendPieces(){
-        // this shall return false if both of them are in the same party
-        assertFalse(p1Pieces[0].canCapture(p1Pieces[1]));
+        // this shall return 1 if both of them are in the same party
+        assertEquals(p1Pieces[0].canCapture(p1Pieces[1]), 1);
     }
 
     /**
@@ -83,8 +85,8 @@ public class UnitTestCaptureTest {
      */
     @Test
     public void RatCaptureElephant(){
-        // this shall return true
-        assertTrue(p1Pieces[7].canCapture(p2Pieces[0]));
+        // this shall return 0
+        assertEquals(p1Pieces[7].canCapture(p2Pieces[0]), 0);
     }
 
     /**
@@ -97,9 +99,9 @@ public class UnitTestCaptureTest {
     @Test
     public void captureTrappedEnemy(){
         // set the trapped flag of the elephant from player 1 to true
-        p1Pieces[0].testSetTrapped(true);
+        p1Pieces[0].setTrapped(true);
         // this shall return true
-        assertTrue(p2Pieces[1].canCapture(p1Pieces[0]));
+        assertEquals(p2Pieces[1].canCapture(p1Pieces[0]), 0);
     }
 
     /**
@@ -111,11 +113,11 @@ public class UnitTestCaptureTest {
     @Test
     public void ratCaptureEnemyRatInWater(){
         // set the water flag of the rat from player 1 to true
-        p1Pieces[7].testSetInWater(true);
-        // this shall return false
-        assertFalse(p2Pieces[7].canCapture(p1Pieces[7]));
-        // this shall also return true if the position is exchanged
-        assertFalse(p1Pieces[7].canCapture(p2Pieces[7]));
+        p1Pieces[7].setInWater(true);
+        // this shall return 4
+        assertEquals(p2Pieces[7].canCapture(p1Pieces[7]), 4);
+        // this shall also return 4 if the position is exchanged
+        assertEquals(p1Pieces[7].canCapture(p2Pieces[7]), 4);
     }
 
     /**
@@ -127,10 +129,10 @@ public class UnitTestCaptureTest {
     @Test
     public void ratCaptureEnemyRatBothInWater(){
         // set the water flag from both player to true
-        p1Pieces[7].testSetInWater(true);
-        p2Pieces[7].testSetInWater(true);
-        // this should return true
-        assertTrue(p2Pieces[7].canCapture(p1Pieces[7]));
+        p1Pieces[7].setInWater(true);
+        p2Pieces[7].setInWater(true);
+        // this should return 0
+        assertEquals(p2Pieces[7].canCapture(p1Pieces[7]), 0);
     }
 
     /**
@@ -145,19 +147,17 @@ public class UnitTestCaptureTest {
         board = new BoardTest();
 
         // at the beginning, the tiger is located at (8, 0)
-        Coordinate tigerPos = new Coordinate(8, 0);
+        Coordinate tigerPos = new Coordinate(0, 8);
         // the new position for tiger
-        Coordinate tigerNewPos = new Coordinate(3, 0);
+        Coordinate tigerNewPos = new Coordinate(0, 3);
         // move it directly to (3, 0)
         board.testSkip(tigerPos, tigerNewPos);
 
         // there is a enemy rat in front of the tiger
-        Coordinate tigerDest = new Coordinate(2, 0);
+        Coordinate tigerDest = new Coordinate(0, 2);
         // capture the enemy rat
         board.move(tigerNewPos, tigerDest);
-        // get the piece count from the board
-        int[] pieceCount = board.testGetPieceCount();
         // the piece count of opposite party shall decreased from 8 to 7
-        assertEquals(pieceCount[1], 7);
+        assertEquals(board.getPieceCount()[0], 7);
     }
 }

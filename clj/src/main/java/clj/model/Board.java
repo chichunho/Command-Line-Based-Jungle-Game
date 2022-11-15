@@ -55,14 +55,14 @@ public class Board {
         pieces[2][4] = new Wolf(1);
         pieces[2][6] = new Elephant(1);
 
-        pieces[8][6] = new Lion(1);
-        pieces[8][0] = new Tiger(1);
-        pieces[7][5] = new Dog(1);
-        pieces[7][1] = new Cat(1);
-        pieces[6][6] = new Rat(1);
-        pieces[6][4] = new Leopard(1);
-        pieces[6][2] = new Wolf(1);
-        pieces[6][0] = new Elephant(1);
+        pieces[8][6] = new Lion(2);
+        pieces[8][0] = new Tiger(2);
+        pieces[7][5] = new Dog(2);
+        pieces[7][1] = new Cat(2);
+        pieces[6][6] = new Rat(2);
+        pieces[6][4] = new Leopard(2);
+        pieces[6][2] = new Wolf(2);
+        pieces[6][0] = new Elephant(2);
 
         // pieces count
         pieceCount[0] = 8;
@@ -98,7 +98,7 @@ public class Board {
     protected void move(Coordinate from, Coordinate to){
         if (pieces[to.getY()][to.getX()] != null){
             int targetParty = pieces[to.getY()][to.getX()].getParty();
-            pieceCount[targetParty]--;
+            pieceCount[targetParty-1]--;
         }
         pieces[to.getY()][to.getX()] = pieces[from.getY()][from.getX()];
         pieces[from.getY()][from.getX()] = null;

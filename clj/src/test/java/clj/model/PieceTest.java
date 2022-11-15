@@ -55,31 +55,30 @@ public abstract class PieceTest implements Party{
      * Any pieces located in the mid way will stop the searching and return the coordinate
      * where it meet the piece.
      * @param   dest    The destination decided by the user
-     * @return  A Coordinate object of the final destination decided by the game logic
+     * @return          A Coordinate object of the final destination decided by the game logic
      */
-    abstract protected Coordinate calFinalDest(Coordinate dest);
+    abstract protected Coordinate calFinalDest(Coordinate dest, Board baord, int dx, int dy);
 
     /**
      * This function determines if this piece can capture another piece
      * @param another   Another piece
      * @return          A boolean value
      */
-    abstract protected boolean canCapture(PieceTest another);
+    abstract protected int canCapture(PieceTest another);
 
     /**
      * This function determine if this piece can move to the destination
      * @param dest      A Coordinate object of the destination
      * @return          A boolean value
      */
-    abstract protected boolean canMoveTo(BoardObjTest dest);
+    abstract protected int canMoveTo(BoardObj dest);
 
-    /* Below are functions used in testing only */
-
-    public void testSetTrapped(boolean trapped){
-        this.trapped = trapped;
-    }
-
-    public void testSetInWater(boolean inWater){
-        this.inWater = inWater;
-    }
+    /**
+     * This function override the default toString(),
+     * only used for printing output,
+     * for internal use, call method getAnimal() instead
+     * @return          A Chinese character representing this piece
+     */
+    @Override
+    abstract public String toString();
 }

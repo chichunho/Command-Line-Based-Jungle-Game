@@ -66,11 +66,13 @@ public class Model {
                 return new Response(7, arguments, board.getPiecesLocation(), false);
         }
         
-        board.move(request.getCoord(), dest);
-        arguments = new String[3];
+        arguments = new String[4];
         arguments[0] = request.getPlayerName();
-        arguments[1] = pickedPiece.getAnimal();
-        arguments[2] = board.pick(dest).getAnimal();
+        arguments[1] = Integer.toString(request.getPlayerParty());
+        arguments[2] = pickedPiece.getAnimal();
+        arguments[3] = board.pick(dest).getAnimal();
+
+        board.move(request.getCoord(), dest);
 
         int[] pieceCount = board.getPieceCount();
         // both players have pieces to play

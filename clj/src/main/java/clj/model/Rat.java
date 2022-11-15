@@ -16,9 +16,13 @@ public class Rat extends Piece{
         if (another.getParty() == this.getParty()){
             return 1;
         }
-        if (another.getAnimal().equals("Elephant") &&
-            this.isInWater()){
-            return 3;
+        if (another.getAnimal().equals("Elephant")){
+            if (this.isInWater()){
+                return 3;
+            }
+            else{
+                return 0;
+            }
         }
         if (another.getAnimal().equals("Rat") &&
             this.isInWater() != another.isInWater()){
