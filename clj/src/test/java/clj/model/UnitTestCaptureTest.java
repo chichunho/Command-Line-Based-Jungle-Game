@@ -2,8 +2,6 @@ package clj.model;
 
 import clj.controller.Coordinate;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
