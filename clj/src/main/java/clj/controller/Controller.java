@@ -6,7 +6,10 @@ import java.util.Random;
 public class Controller {
     
     Request request;
-    public Controller(){
+    Scanner scanner;
+
+    public Controller(Scanner scanner){
+        this.scanner = scanner;
     }
     // TODO fill the javadoc
     /**
@@ -29,7 +32,7 @@ public class Controller {
         int row = pos.charAt(1);
 
         // validate the format [A-G][1-9]
-        if (col < 'A' || col > 'G' || row < 1 || row > 9){
+        if (col < 'A' || col > 'G' || row < '1' || row > '9'){
             System.out.println("Invalid input: The input should follow the format of [A-G][1-9], e.g. A3.");
             return false;
         }
@@ -51,7 +54,7 @@ public class Controller {
         }
         char userDirect = Character.toLowerCase(pos.charAt(0));
 
-        if (userDirect!='w' || userDirect!= 's' || userDirect!='d' ||userDirect!='a'){
+        if (userDirect !='w' && userDirect != 's' && userDirect !='d' && userDirect !='a'){
             System.out.println("Invalid Direction selected");
             return false;
         }
@@ -66,7 +69,6 @@ public class Controller {
      * @return
      */
     public Request getUserRequest(Player currentPlayer){
-        Scanner scan = new Scanner(System.in);
         
         String userInputPiece;
         String userInputDirect;
@@ -75,14 +77,16 @@ public class Controller {
         
         Request userReq;
 
+        System.out.println("Now is "+currentPlayer.getName()+"\'s turn.");
+
         do {
-            System.out.println("Please select Piece:");
-            userInputPiece = scan.nextLine();
+            System.out.print("Please select Piece: ");
+            userInputPiece = scanner.nextLine();
         }while(validatePiece(userInputPiece)==false);
 
         do {
-            System.out.println("Please select Direction:");
-            userInputDirect = scan.nextLine();
+            System.out.print("Please select Direction: ");
+            userInputDirect = scanner.nextLine();
         }while(validateDirection(userInputDirect)==false);
 
         userDirect = parseDirection(userInputDirect);
@@ -91,7 +95,6 @@ public class Controller {
 
         userReq = new Request(currentPlayer, userCoor, userDirect[0], userDirect[1]);
 
-        scan.close();
         return userReq;
     }
 
@@ -148,18 +151,17 @@ public class Controller {
      * @return
      */
     public Player[] getUserInfo() {
-        // scanner for scanning the user input
-        Scanner scan = new Scanner(System.in);
+
         // two variables to store the input
         String[] playerNames = new String[2];
         Player[] players = new Player[2];
 
         // ask for user input
-        System.out.println("Please Enter the first player's name: ");
-        playerNames[0] = scan.nextLine();
+        System.out.print("Please Enter the first player's name: ");
+        playerNames[0] = scanner.nextLine();
 
-        System.out.println("Please enter the second player's name: ");
-        playerNames[1] = scan.nextLine();
+        System.out.print("Please enter the second player's name: ");
+        playerNames[1] = scanner.nextLine();
 
         Random rand = new Random();
 
@@ -180,7 +182,15 @@ public class Controller {
             players[1] = temp;
         }
 
-        scan.close();
+        for (int i = 0; i < 2; i++){
+            System.out.print(players[i].getName()+" is Party ");
+            if (players[i].getParty() == 1){
+                System.out.println("Red.");
+            }
+            else{
+                System.out.println("Blue.");
+            }
+        }
 
         return players;
     }

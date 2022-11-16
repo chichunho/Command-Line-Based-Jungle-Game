@@ -19,14 +19,14 @@ public class Response {
         return this.arguments;
     }
 
-    public String getPieceAnimal(int x, int y){
-        if (pieces[x][y] == null){
-            return "";
+    public String getPieceAnimal(int col, int row){
+        if (pieces[row][col] == null){
+            return new String("");
         }
-        return pieces[x][y].toString();
+        return pieces[row][col].toString();
     }
 
-    public int getPieceParty(int x, int y){
-        return pieces[x][y].getParty();
+    public int getPieceParty(int col, int row){
+        return pieces[row][col].getParty();
     }
 }

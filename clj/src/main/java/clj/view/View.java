@@ -72,8 +72,10 @@ public class View {
             for (int j = 0; j < 15; j++){
                 System.out.print(board[i][j]);
             }
+            System.out.print('\n');
         }
     }
+
     public void printMessage(Response response){
 
         String[] arguments = response.getArguments();
@@ -103,9 +105,9 @@ public class View {
                 System.out.println("This piece cannot enter the water square!");
                 break;
 
-            // when player try to capture another same party piece
+            // when player try to move to square where containing a friendly piece
             case 6:
-                System.out.println("You cannot capture your pieces!");
+                System.out.println("One of your piece has already in that square!");
                 break;
 
             // when player try to capture another higher rank piece, and it is not trapped
@@ -125,6 +127,7 @@ public class View {
             // when the player move his/her piece to enemy's den
             case 10:
                 System.out.println(arguments[0]+"\'s piece has moved to the enemy\'s den, "+arguments[0]+" wins!");
+                break;
             // the piece is moved successfully or capture the enemy's piece
             case 11:
                 if (arguments[3]!=null){
@@ -166,15 +169,14 @@ public class View {
             {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"}};
 
         // print the board with the piece location information
-        int pieceX = 0;
-        int pieceY = 0;
-        for (int i = 1; i < 19; i++){
-            System.out.println();
-            for (int j = 1; j < 15; j++){
+        int row = 0;
+        int col = 0;
+        for (int i = 0; i < 19; i++){
+            for (int j = 0; j < 15; j++){
                 if (i%2 == 1 && j%2 == 1){
-                    String pieceAnimalName = response.getPieceAnimal(pieceX, pieceY);
-                    if (!pieceAnimalName.equals("")){
-                        if (response.getPieceParty(pieceX, pieceY) == 1){
+                    String pieceAnimalName = response.getPieceAnimal(col, row);
+                    if (!"".equals(pieceAnimalName)){
+                        if (response.getPieceParty(col, row) == 1){
                             System.out.print(ANSI_RED + pieceAnimalName + ANSI_RESET);
                         }
                         else{
@@ -182,15 +184,17 @@ public class View {
                         }
                     }
                     else{
-                        System.out.print('　');
+                        System.out.print(board[i][j]);
                     }
-                    pieceX++;
+                    col++;
                 }
                 else{
                     System.out.print(board[i][j]);
                 }
             }
-            pieceY++;
+            col = 0;
+            row += i%2;
+            System.out.print('\n');
         }
         /*
         for (int i=0; i<19; i++){
@@ -253,7 +257,6 @@ public class View {
     }
 
     public void updateView(Response response){
-
 
         printMessage(response);
 

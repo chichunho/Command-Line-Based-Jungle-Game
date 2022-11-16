@@ -3,9 +3,6 @@ package clj.model;
 import clj.controller.Coordinate;
 import clj.controller.PlayerTest;
 import clj.controller.RequestTest;
-import clj.view.View;
-
-
 
 import org.junit.Before;
 

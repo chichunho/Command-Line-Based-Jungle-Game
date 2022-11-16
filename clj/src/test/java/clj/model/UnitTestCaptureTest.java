@@ -58,7 +58,6 @@ public class UnitTestCaptureTest {
                 }
                 // otherwise, it shall return 2
                 else{
-                    System.out.println(i+" "+j);
                     assertEquals(p1Pieces[i].canCapture(p2Pieces[j]), 2);
                 }
             }

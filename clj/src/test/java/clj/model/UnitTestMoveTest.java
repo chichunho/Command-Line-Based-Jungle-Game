@@ -106,8 +106,8 @@ public class UnitTestMoveTest {
     public void JumpWaterTest(){
         Coordinate finalPos = new Coordinate(3,3);
         Coordinate result = allAnimals[5].calFinalDest(waterSquare, testBoard, 1, 0);
-        assertEquals(result.getX(), finalPos.getX());
-        assertEquals(result.getY(), finalPos.getY());
+        assertEquals(result.getCol(), finalPos.getCol());
+        assertEquals(result.getRow(), finalPos.getRow());
     }
 
     // TODO fill the functionality and expected
@@ -115,8 +115,8 @@ public class UnitTestMoveTest {
         Coordinate ratPos = new Coordinate("B6");
         testBoard.testSetPiece(allAnimals[0], ratPos);
         Coordinate result = allAnimals[5].calFinalDest(waterSquare, testBoard, 1, 0);
-        assertEquals(result.getX(), ratPos.getX());
-        assertEquals(result.getY(), ratPos.getY());
+        assertEquals(result.getCol(), ratPos.getCol());
+        assertEquals(result.getRow(), ratPos.getRow());
     }
 
 }

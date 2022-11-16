@@ -2,7 +2,7 @@ package clj.controller;
 
 public class Coordinate {
 
-    private int x, y;
+    private int col, row;
 
     // TODO fill the javadoc
     /**
@@ -11,8 +11,8 @@ public class Coordinate {
      */
     public Coordinate(String pos){
         int [] temp = this.convertToAbs(pos);
-        this.x = temp[0];
-        this.y = temp[1];
+        this.col = temp[0];
+        this.row = temp[1];
     }
 
     // TODO fill the javadoc
@@ -21,9 +21,9 @@ public class Coordinate {
      * @param x
      * @param y
      */
-    public Coordinate(int x, int y){
-        this.x = x;
-        this.y = y;
+    public Coordinate(int col, int row){
+        this.col = col;
+        this.row = row;
     }
 
     /**
@@ -45,8 +45,8 @@ public class Coordinate {
      * 
      * @return
      */
-    public int getX(){
-        return this.x;
+    public int getCol(){
+        return this.col;
     }
 
     // TODO fill the javadoc
@@ -54,7 +54,7 @@ public class Coordinate {
      * 
      * @return
      */
-    public int getY(){
-        return this.y;
+    public int getRow(){
+        return this.row;
     }
 }

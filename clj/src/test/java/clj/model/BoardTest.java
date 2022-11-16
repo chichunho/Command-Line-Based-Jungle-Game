@@ -75,7 +75,7 @@ public class BoardTest {
      * @return      The piece
      */
     public PieceTest pick(Coordinate pos){
-        return pieces[pos.getY()][pos.getX()];
+        return pieces[pos.getRow()][pos.getCol()];
     }
 
     /**
@@ -84,7 +84,7 @@ public class BoardTest {
      * @return      A String object represent the type of terrain
      */
     public BoardObjTest at(Coordinate pos){
-        return terrain[pos.getY()][pos.getX()];
+        return terrain[pos.getRow()][pos.getCol()];
     }
 
     /**
@@ -96,23 +96,23 @@ public class BoardTest {
      * @param to        The destination
      */
     protected void move(Coordinate from, Coordinate to){
-        if (pieces[to.getY()][to.getX()] != null){
-            int targetParty = pieces[to.getY()][to.getX()].getParty();
+        if (pieces[to.getRow()][to.getCol()] != null){
+            int targetParty = pieces[to.getRow()][to.getCol()].getParty();
             pieceCount[targetParty-1]--;
         }
-        pieces[to.getY()][to.getX()] = pieces[from.getY()][from.getX()];
-        pieces[from.getY()][from.getX()] = null;
-        if (terrain[to.getY()][to.getX()].getType().equals("Water")){
-            pieces[to.getY()][to.getX()].setInWater(true);
+        pieces[to.getRow()][to.getCol()] = pieces[from.getRow()][from.getCol()];
+        pieces[from.getRow()][from.getCol()] = null;
+        if (terrain[to.getRow()][to.getCol()].getType().equals("Water")){
+            pieces[to.getRow()][to.getCol()].setInWater(true);
         }
         else{
-            pieces[to.getY()][to.getX()].setInWater(false);
+            pieces[to.getRow()][to.getCol()].setInWater(false);
         }
-        if (terrain[to.getY()][to.getX()].getType().equals("Trap")){
-            pieces[to.getY()][to.getX()].setTrapped(true);
+        if (terrain[to.getRow()][to.getCol()].getType().equals("Trap")){
+            pieces[to.getRow()][to.getCol()].setTrapped(true);
         }
         else{
-            pieces[to.getY()][to.getX()].setTrapped(false);
+            pieces[to.getRow()][to.getCol()].setTrapped(false);
         }
     }
 
@@ -127,17 +127,17 @@ public class BoardTest {
     /* Functions below are for testing only */
 
     public void testSkip(Coordinate tigerPos, Coordinate tigerNewPos) {
-        pieces[tigerNewPos.getY()][tigerNewPos.getX()] = pieces[tigerPos.getY()][tigerPos.getX()];
-        pieces[tigerPos.getY()][tigerPos.getX()] = null;
+        pieces[tigerNewPos.getRow()][tigerNewPos.getCol()] = pieces[tigerPos.getRow()][tigerPos.getCol()];
+        pieces[tigerPos.getRow()][tigerPos.getCol()] = null;
     }
 
     public void testSetPiece(PieceTest piece, Coordinate pos){
-        pieces[pos.getY()][pos.getX()] = piece;
+        pieces[pos.getRow()][pos.getCol()] = piece;
         pieceCount[piece.getParty()-1]++;
 
     }
     public String testGetPosPiece(Coordinate pos){
-        return pieces[pos.getY()][pos.getX()].getAnimal();
+        return pieces[pos.getRow()][pos.getCol()].getAnimal();
     }
 
     public void testEmptyBoardPieces(){

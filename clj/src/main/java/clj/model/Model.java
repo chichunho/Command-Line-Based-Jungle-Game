@@ -34,15 +34,15 @@ public class Model {
         }
         
         // calculate the destination
-        Coordinate dest = new Coordinate(request.getCoord().getX()+request.getDx(), request.getCoord().getY()+request.getDy());
+        Coordinate dest = new Coordinate(request.getCoord().getCol()+request.getDx(), request.getCoord().getRow()+request.getDy());
         // some pieces can jump, so the destination is calculate again
         dest = pickedPiece.calFinalDest(dest, board, request.getDx(), request.getDy());
 
         // if the destination is out of bound
         if (isOutOfBound(dest)){
             arguments = new String[2];
-            arguments[0] = Integer.toString(dest.getX());
-            arguments[1] = Integer.toString(dest.getY());
+            arguments[0] = Integer.toString(dest.getCol());
+            arguments[1] = Integer.toString(dest.getRow());
             view.updateView(new Response(3 ,arguments, board.getPiecesLocation()));
             return 3;
         }
@@ -54,16 +54,16 @@ public class Model {
             case 1:
                 arguments = new String[3];
                 arguments[0] = pickedPiece.toString();
-                arguments[1] = Integer.toString(dest.getX());
-                arguments[2] = Integer.toString(dest.getY());
+                arguments[1] = Integer.toString(dest.getCol());
+                arguments[2] = Integer.toString(dest.getRow());
                 view.updateView(new Response(4 ,arguments , board.getPiecesLocation()));
                 return 4;
             // when the piece fail to enter the water square
             case 2:
                 arguments = new String[3];
                 arguments[0] = pickedPiece.getAnimal();
-                arguments[1] = Integer.toString(dest.getX());
-                arguments[2] = Integer.toString(dest.getY());
+                arguments[1] = Integer.toString(dest.getCol());
+                arguments[2] = Integer.toString(dest.getRow());
                 view.updateView(new Response(5, arguments, board.getPiecesLocation()));
                 return 5;
         }
@@ -74,8 +74,8 @@ public class Model {
             case 1:
                 arguments = new String[3];
                 arguments[0] = board.pick(dest).getAnimal();
-                arguments[1] = Integer.toString(dest.getX());
-                arguments[2] = Integer.toString(dest.getY());
+                arguments[1] = Integer.toString(dest.getCol());
+                arguments[2] = Integer.toString(dest.getRow());
                 view.updateView(new Response(6, arguments, board.getPiecesLocation()));
                 return 6;
             // when player try to capture another higher rank piece, and it is not trapped
@@ -129,10 +129,10 @@ public class Model {
     }
 
     private boolean isOutOfBound(Coordinate pos){
-        if (pos.getY() < 0 || pos.getY() > 8){
+        if (pos.getRow() < 0 || pos.getRow() > 8){
             return true;
         }
-        if (pos.getX() < 0 || pos.getX() > 6){
+        if (pos.getCol() < 0 || pos.getCol() > 6){
             return true;
         }
         return false;

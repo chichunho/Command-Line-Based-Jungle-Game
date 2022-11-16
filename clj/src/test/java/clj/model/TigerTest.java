@@ -42,7 +42,7 @@ public class TigerTest extends PieceTest{
             if (board.pick(dest) != null){
                 return dest;
             }
-            dest = new Coordinate(dest.getX()+dx, dest.getY()+dy);
+            dest = new Coordinate(dest.getCol()+dx, dest.getRow()+dy);
         }
         return dest;
     }

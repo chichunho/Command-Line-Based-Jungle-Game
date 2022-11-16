@@ -42,15 +42,14 @@ public class Tiger extends Piece{
             if (board.pick(dest) != null){
                 return dest;
             }
-            dest = new Coordinate(dest.getX()+dx, dest.getY()+dy);
+            dest = new Coordinate(dest.getCol()+dx, dest.getRow()+dy);
         }
         return dest;
     }
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return null;
+        return "虎";
     }
     
 }
