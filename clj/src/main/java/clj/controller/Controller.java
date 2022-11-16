@@ -3,6 +3,7 @@ package clj.controller;
 import clj.view.View;
 import java.util.Scanner;
 
+
 public class Controller {
     
     View view;
@@ -18,15 +19,15 @@ public class Controller {
     private boolean validatePiece(String pos){
 
         if (pos.length()!=2){
-            printf("Invalid input: input should consists two elements");
+            System.out.println("Invalid input: input should consists two elements");
             return false;
         }
-        int col = toLowerCase(pos.charAt(0));
+        int col = Character.toLowerCase(pos.charAt(0));
         int row = pos.charAt(1);
 
         
         if (col < 97 || col > 103 || row < 1 || row > 9){
-            System.out.Println("Invalid piece selected.");
+            System.out.println("Invalid piece selected.");
             return false;
         }
         return true;
@@ -34,13 +35,13 @@ public class Controller {
 
     private boolean validateDirection(String pos){
         if (pos.length()!= 1){
-            printf("Invalid input: input should consists 1 character");
+            System.out.println("Invalid input: input should consists 1 character");
             return false;
         }
-        char userDirect = toLowerCase(pos.charAt(0));
+        char userDirect = Character.toLowerCase(pos.charAt(0));
 
-        if (userDirect!="w" || userDirect!= "s" || userDirect!="d" ||userDirect!="a"){
-            System.out.Println("Invalid Direction selected");
+        if (userDirect!='w' || userDirect!= 's' || userDirect!='d' ||userDirect!='a'){
+            System.out.println("Invalid Direction selected");
             return false;
         }
 
@@ -62,13 +63,13 @@ public class Controller {
         Request userReq;
 
         do {
-            System.out.Println("\rPlease select Piece:\n");
-            userInputPiece = nextLine();
+            System.out.println("\rPlease select Piece:\n");
+            userInputPiece = scan.nextLine();
         }while(validatePiece(userInputPiece)==false);
 
         do {
-            System.out.Println("\rPlease select Direction:\n");
-            userInputDirect = nextLine();
+            System.out.println("\rPlease select Direction:\n");
+            userInputDirect = scan.nextLine();
         }while(validateDirection(userInputDirect)==false);
 
         userDirect = parseDirection(userInputDirect);
@@ -118,7 +119,7 @@ public class Controller {
     }
 
     public String[] getUserInfo(Player player) {
-        String userInfo[] = {player.getName(),player.getParty()};
+        String userInfo[] = {player.getName(),Integer.toString(player.getParty())};
         return userInfo;
     }
 }
