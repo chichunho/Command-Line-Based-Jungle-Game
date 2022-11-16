@@ -37,7 +37,7 @@ public class RatTest extends PieceTest{
     }
 
     @Override
-    protected int canMoveTo(BoardObj dest) {
+    protected int canMoveTo(BoardObjTest dest) {
         if (dest.getType().equals("Den") &&
             dest.getParty() == this.getParty()){
                 return 1;
@@ -51,7 +51,7 @@ public class RatTest extends PieceTest{
     }
 
     @Override
-    protected Coordinate calFinalDest(Coordinate dest, Board baord, int dx, int dy) {
+    protected Coordinate calFinalDest(Coordinate dest, BoardTest baord, int dx, int dy) {
         return dest;
     }
     

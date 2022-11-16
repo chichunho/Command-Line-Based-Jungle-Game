@@ -7,12 +7,14 @@ public class PlayerTest implements Party{
     private String name;
     private int party;
 
-    protected PlayerTest(String name, int party){
+    // this is a public constructor in test
+    public PlayerTest(String name, int party){
         this.name = name;
+        this.party = party;
     }
 
     public String getName(){
-        return null;
+        return this.name;
     }
 
     @Override

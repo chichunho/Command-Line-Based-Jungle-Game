@@ -133,6 +133,7 @@ public class BoardTest {
 
     public void testSetPiece(PieceTest piece, Coordinate pos){
         pieces[pos.getY()][pos.getX()] = piece;
+        pieceCount[piece.getParty()-1]++;
 
     }
     public String testGetPosPiece(Coordinate pos){
@@ -145,6 +146,8 @@ public class BoardTest {
                 pieces[i][j] = null;
             }
         }
+        pieceCount[0] = 0;
+        pieceCount[1] = 0;
     }
 
 }

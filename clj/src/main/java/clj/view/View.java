@@ -1,35 +1,8 @@
 package clj.view;
 
-import clj.model.*;
-
-import java.util.Arrays;
-import java.util.Objects;
-
+import clj.model.Response;
 
 public class View {
-
-    // game board view with no pieces placed
-    // 19 rows, 15 columns
-    String[][] board = {
-        {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"},
-        {"|","　","|","　","|","陷","|","穴","|","陷","|","　","|","　","|"},
-        {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"},
-        {"|","　","|","　","|","　","|","陷","|","　","|","　","|","　","|"},
-        {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"},
-        {"|","　","|","　","|","　","|","　","|","　","|","　","|","　","|"},
-        {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"},
-        {"|","　","|","～","|","～","|","　","|","～","|","～","|","　","|"},
-        {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"},
-        {"|","　","|","～","|","～","|","　","|","～","|","～","|","　","|"},
-        {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"},
-        {"|","　","|","～","|","～","|","　","|","～","|","～","|","　","|"},
-        {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"},
-        {"|","　","|","　","|","　","|","　","|","　","|","　","|","　","|"},
-        {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"},
-        {"|","　","|","　","|","　","|","陷","|","　","|","　","|","　","|"},
-        {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"},
-        {"|","　","|","　","|","陷","|","穴","|","陷","|","　","|","　","|"},
-        {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"}};
     
     final String ANSI_RESET = "\u001B[0m";
     final String ANSI_RED = "\u001B[31m";
@@ -105,54 +78,65 @@ public class View {
 
         String[] arguments = response.getArguments();
 
+        printView(response);
         switch (response.getMsgId()) {
-            // when pieces move out of bound
+            // when no piece is selected
             case 1:
+                System.out.println("No piece is selected, please input again.");
+                break;
+            // when the player choose the opponent's piece
+            case 2:
+                System.out.println("You can not choose opponent's piece, please input again.");
+                break;
+            // when pieces move out of bound
+            case 3:
                 System.out.println("The destination is out of bound!");
                 break;
 
             // when player try to move to his/her own den
-            case 2:
+            case 4:
                 System.out.println("You cannot enter your den!");
                 break;
 
             // when the piece fail to enter the water square
-            case 3:
+            case 5:
                 System.out.println("This piece cannot enter the water square!");
                 break;
 
             // when player try to capture another same party piece
-            case 4:
+            case 6:
                 System.out.println("You cannot capture your pieces!");
                 break;
 
             // when player try to capture another higher rank piece, and it is not trapped
-            case 5:
+            case 7:
                 System.out.println("You cannot capture higher rank pieces!");
                 break;
 
             // when the rat is in water and try to capture elephant on land
-            case 6:
+            case 8:
                 System.out.println("Rat in river cannot capture enemy elephant on land!");
                 break;
 
             // when the rat is in water and try to capture enemy rat on land, or vice versa
-            case 7:
+            case 9:
                 System.out.println("Rat in river cannot capture enemy rat on land!");
                 break;
-
-            // when the player move the piece correctly
-            case 8:
-                printView(response);
+            // when the player move his/her piece to enemy's den
+            case 10:
+                System.out.println(arguments[0]+"\'s piece has moved to the enemy\'s den, "+arguments[0]+" wins!");
+            // the piece is moved successfully or capture the enemy's piece
+            case 11:
                 if (arguments[3]!=null){
-                    System.out.println("Player "+arguments[0]+"'s "+arguments[2]+" capture enemy "+arguments[3]+"!");
+                    System.out.println("Player "+arguments[0]+"\'s "+arguments[2]+" capture enemy "+arguments[3]+"!");
+                }
+                else{
+                    System.out.println("Player "+arguments[0]+"\'s "+arguments[2]+" is moved sucessfully.");
                 }
                 break;
-
-            // when a player win the game
-            case 9:
-                printView(response);
-                System.out.println("Congratulations! Player " + arguments[0] + " win the game!");
+            // when a player has no pieces to play
+            case 12:
+                System.out.println("Congratulations! Your opponent has no piece to play, " + arguments[0] + " win the game!");
                 break;
         }
     }

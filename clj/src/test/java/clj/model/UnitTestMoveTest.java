@@ -31,7 +31,7 @@ public class UnitTestMoveTest {
     BoardTest testBoard = new BoardTest();
 
     Coordinate topLeft, topRight, bottomLeft, bottomRight;
-    Coordinate waterLeft,waterBottom;
+    Coordinate waterLeft,waterBottom, waterSquare;
 
     Request testRequest;
     View testView;
@@ -40,13 +40,14 @@ public class UnitTestMoveTest {
     @Before
     public void setUp() throws Exception {
         // the corners of the game board
-        topLeft = new Coordinate(0,0);
-        topRight = new Coordinate(0,6);
-        bottomLeft = new Coordinate(8,0);
-        bottomRight = new Coordinate(8,6);
+        topLeft = new Coordinate("A9");
+        topRight = new Coordinate("G9");
+        bottomLeft = new Coordinate("A1");
+        bottomRight = new Coordinate("G1");
 
-        waterLeft = new Coordinate(4,0);
-        waterBottom = new Coordinate(6,1);
+        waterLeft = new Coordinate("A6");
+        waterBottom = new Coordinate("B3");
+        waterSquare = new Coordinate("B6");
 
         testBoard.testSetPiece(allAnimals[0],waterBottom);
         testBoard.testSetPiece(allAnimals[1],topLeft);
@@ -60,25 +61,33 @@ public class UnitTestMoveTest {
      * Functionality:
      * This is testing if the out-of-bound checks are correctly done
      * Expected:
-     * The function shall return false if the moves is out of bound
+     * The function shall return true if the moves is out of bound
      */
     @Test
     public void outOfBoundTest(){
-        //top Left
-        assertFalse(testModel.testIsOutOfBound(topLeft,-1,0));
-        assertFalse(testModel.testIsOutOfBound(topLeft,0,-1));
+        // top Left
+        // move to the left
+        assertTrue(testModel.testIsOutOfBound(topLeft,-1,0));
+        // move forward
+        assertTrue(testModel.testIsOutOfBound(topLeft,0,-1));
 
         //top right
-        assertFalse(testModel.testIsOutOfBound(topRight,1,0));
-        assertFalse(testModel.testIsOutOfBound(topRight,0,-1));
+        // move to the right
+        assertTrue(testModel.testIsOutOfBound(topRight,1,0));
+        // move forward
+        assertTrue(testModel.testIsOutOfBound(topRight,0,-1));
 
         //bottom left
-        assertFalse(testModel.testIsOutOfBound(bottomLeft,-1,0));
-        assertFalse(testModel.testIsOutOfBound(bottomLeft,0,1));
+        // move to the left
+        assertTrue(testModel.testIsOutOfBound(bottomLeft,-1,0));
+        // move backward
+        assertTrue(testModel.testIsOutOfBound(bottomLeft,0,1));
 
         //bottom right
-        assertFalse(testModel.testIsOutOfBound(bottomRight,1,0));
-        assertFalse(testModel.testIsOutOfBound(bottomRight,0,1));
+        // move to the right
+        assertTrue(testModel.testIsOutOfBound(bottomRight,1,0));
+        // move backward
+        assertTrue(testModel.testIsOutOfBound(bottomRight,0,1));
     }
 
     /**
@@ -89,23 +98,25 @@ public class UnitTestMoveTest {
      */
     @Test
     public void ratWaterTest(){
-        assertTrue(testModel.testIsOutOfBound(bottomRight,1,0));
+        assertEquals(allAnimals[0].canMoveTo(testBoard.at(waterSquare)), 0);
     }
 
+    // TODO fill the functionality and expected
     @Test
     public void JumpWaterTest(){
-        Coordinate finalPos = new Coordinate(4,3);
-        assertTrue(testModel.testIsOutOfBound(waterLeft,0,1));
-        assertEquals("Tiger", testBoard.testGetPosPiece(finalPos));
+        Coordinate finalPos = new Coordinate(3,3);
+        Coordinate result = allAnimals[5].calFinalDest(waterSquare, testBoard, 1, 0);
+        assertEquals(result.getX(), finalPos.getX());
+        assertEquals(result.getY(), finalPos.getY());
     }
 
+    // TODO fill the functionality and expected
     @Test public void JumpRatTest(){
-        //move rat to water
-        //testRequest = new Request(testIsOutOfBounder,waterBottom,1,0);
-        //request tiger jump over water
-        //testRequest = new Request(testIsOutOfBounder,waterLeft,0,1);
-        assertFalse(testModel.testIsOutOfBound(waterLeft,0,1));
-
+        Coordinate ratPos = new Coordinate("B6");
+        testBoard.testSetPiece(allAnimals[0], ratPos);
+        Coordinate result = allAnimals[5].calFinalDest(waterSquare, testBoard, 1, 0);
+        assertEquals(result.getX(), ratPos.getX());
+        assertEquals(result.getY(), ratPos.getY());
     }
 
 }

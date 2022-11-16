@@ -23,7 +23,7 @@ public class ElephantTest extends PieceTest{
     }
 
     @Override
-    protected int canMoveTo(BoardObj dest){
+    protected int canMoveTo(BoardObjTest dest){
         
         if (dest.getType().equals("Den") && dest.getParty() == this.getParty()){
             return 1;
@@ -37,7 +37,7 @@ public class ElephantTest extends PieceTest{
     }
 
     @Override
-    protected Coordinate calFinalDest(Coordinate dest, Board dboard, int dx, int dy) {
+    protected Coordinate calFinalDest(Coordinate dest, BoardTest dboard, int dx, int dy) {
         return dest;
     }
 

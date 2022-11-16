@@ -4,6 +4,7 @@ public class Coordinate {
 
     private int x, y;
 
+    // TODO fill the javadoc
     /**
      * Constructor of object Coordinate
      * @param pos
@@ -14,23 +15,16 @@ public class Coordinate {
         this.y = temp[1];
     }
 
+    // TODO fill the javadoc
+    /**
+     * 
+     * @param x
+     * @param y
+     */
     public Coordinate(int x, int y){
         this.x = x;
         this.y = y;
     }
-
-    // code for convertToAbs
-    /* 
-    private int getPosX(String pos){
-        int posX = pos.charAt(0);
-        return posX-65;
-    }
-
-    private int getPosY(String pos){
-        int posY = pos.charAt(1);
-        return 9-posY;
-    }
-    */
 
     /**
      * This function convert the string format position to 
@@ -40,16 +34,26 @@ public class Coordinate {
      */
     private int[] convertToAbs(String pos){
         int temp[] = new int [2];
-        temp[0] = Integer.parseInt(pos.charAt(0));
-        temp[1] = Integer.parseInt(pos.charAt(1));
+        temp[0] = pos.charAt(0)-65;
+        temp[1] = 9-(pos.charAt(1)-'0');
 
         return temp;
     }
 
+    // TODO fill the javadoc
+    /**
+     * 
+     * @return
+     */
     public int getX(){
         return this.x;
     }
 
+    // TODO fill the javadoc
+    /**
+     * 
+     * @return
+     */
     public int getY(){
         return this.y;
     }

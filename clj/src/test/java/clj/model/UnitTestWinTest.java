@@ -30,9 +30,8 @@ public class UnitTestWinTest {
      */
     Coordinate c1,c2,c3,c4;
     PieceTest p1,p2;
-    View testView;
-    ModelTest testModel = new ModelTest(testView);
     BoardTest testBoard = new BoardTest();
+    ModelTest testModel = new ModelTest(testBoard);
 
     RequestTest testRequest;
     PlayerTest testPlayer;
@@ -40,18 +39,19 @@ public class UnitTestWinTest {
     
     @Before
     public void setUp(){
-        c1 = new Coordinate(0,2);
-        c2 = new Coordinate(0,4);
-        c3 = new Coordinate(1,3);
+        c1 = new Coordinate("C9");
+        c2 = new Coordinate("E9");
+        c3 = new Coordinate("D8");
 
-        c4 = new Coordinate(2,3); //this coordinate is set under c3
+        c4 = new Coordinate("D7"); //this coordinate is set under c3
         p1 = new LionTest(1);
         p2 = new RatTest(2);
 
         testBoard.testEmptyBoardPieces();
+        // Lion at D7
         testBoard.testSetPiece(p1,c4);
+        // Rat at D8
         testBoard.testSetPiece(p2,c3);
-
     }
 
     /**
@@ -68,16 +68,10 @@ public class UnitTestWinTest {
          * It simulates two players have 1 remaining piece on the game board
          * When one player capture the other piece, model shall identify and response shall be stated the game is ended to view.
          */
-        testRequest = new RequestTest(testPlayer,c4,0,1);
-        testResponse = testModel.run(testRequest);
-        assertTrue(testResponse.getIsEndGame());
-        /**
-         * If the player didnt capture other piece, then all players at least have 1 piece on board
-         * model shall identify and response shall be stated that the game continues
-         */
-        testRequest = new RequestTest(testPlayer,c4, 0,-1);
-        testResponse = testModel.run(testRequest);
-        assertFalse(testResponse.getIsEndGame());
+        PlayerTest testPlayer = new PlayerTest("test", 1);
+        testRequest = new RequestTest(testPlayer, c4, 0, -1);
+        int testRet = testModel.run(testRequest);
+        assertEquals(12, testRet);
     }
 
     /**
@@ -97,33 +91,9 @@ public class UnitTestWinTest {
          *  First, controller send request to model, asking to move a piece from a party to the direction.
          *  if the piece move to den, response should state that the game is ended.
          */
-        testRequest = new RequestTest(testPlayer, c1, 1,0);
-        testResponse = testModel.run(testRequest);
-        assertTrue(testResponse.getIsEndGame());
-
-        testRequest = new RequestTest(testPlayer, c2, -1,0);
-        testResponse = testModel.run(testRequest);
-        assertTrue(testResponse.getIsEndGame());
-
-        testRequest = new RequestTest(testPlayer,c3,0,1);
-        testResponse = testModel.run(testRequest);
-        assertTrue(testResponse.getIsEndGame());
-
-        /**
-         * test if the response indicate the game continue
-         */
-
-        testRequest = new RequestTest(testPlayer, c1, 0,-1);
-        testResponse = testModel.run(testRequest);
-        assertFalse(testResponse.getIsEndGame());
-
-        testRequest = new RequestTest(testPlayer, c2, 1,0);
-        testResponse = testModel.run(testRequest);
-        assertFalse(testResponse.getIsEndGame());
-
-        testRequest = new RequestTest(testPlayer,c3,0,-1);
-        testResponse = testModel.run(testRequest);
-        assertFalse(testResponse.getIsEndGame());
-
+        PlayerTest testPlayer = new PlayerTest("test", 2);
+        testRequest = new RequestTest(testPlayer, c3, 0,-1);
+        int testRet = testModel.run(testRequest);
+        assertEquals(10, testRet);
     }
 }

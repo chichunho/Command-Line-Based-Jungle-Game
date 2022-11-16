@@ -40,7 +40,8 @@ public class UnitTestCaptureTest {
 
     /**
      * Functionality:
-     * This is testing if a piece can capture enemy piece with equal or lower ranks
+     * This is testing if a piece can capture enemy piece with equal or lower ranks,
+     * This test will not test rat
      * Expected:
      * The higher rank animal shall be able to capture the same or lower rank animal, and
      * the lower rank animal shall not be able to capture the higher rank animal
@@ -48,15 +49,16 @@ public class UnitTestCaptureTest {
     @Test
     public void captureEnemyPieces(){
         // for each animal i
-        for (int i = 0; i < 8; i++){
+        for (int i = 0; i < 7; i++){
             // for each animal j
-            for (int j = 0; j < 8; j++){
+            for (int j = 0; j < 7; j++){
                 // if the rank of j is equal or lower than animal i, the function shall return 0
                 if (i <= j){
                     assertEquals(p1Pieces[i].canCapture(p2Pieces[j]), 0);
                 }
                 // otherwise, it shall return 2
                 else{
+                    System.out.println(i+" "+j);
                     assertEquals(p1Pieces[i].canCapture(p2Pieces[j]), 2);
                 }
             }

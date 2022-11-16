@@ -10,8 +10,8 @@ public class Request {
     private Player player;
 
     protected Request(Player player, Coordinate coordinate, int dx, int dy){
-        this.dx = 0;
-        this.dy = 0;
+        this.dx = dx;
+        this.dy = dy;
         this.coordinate = coordinate;
         this.player = player;
     }

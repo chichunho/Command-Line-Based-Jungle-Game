@@ -57,7 +57,7 @@ public abstract class PieceTest implements Party{
      * @param   dest    The destination decided by the user
      * @return          A Coordinate object of the final destination decided by the game logic
      */
-    abstract protected Coordinate calFinalDest(Coordinate dest, Board baord, int dx, int dy);
+    abstract protected Coordinate calFinalDest(Coordinate dest, BoardTest baord, int dx, int dy);
 
     /**
      * This function determines if this piece can capture another piece
@@ -71,7 +71,7 @@ public abstract class PieceTest implements Party{
      * @param dest      A Coordinate object of the destination
      * @return          A boolean value
      */
-    abstract protected int canMoveTo(BoardObj dest);
+    abstract protected int canMoveTo(BoardObjTest dest);
 
     /**
      * This function override the default toString(),

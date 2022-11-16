@@ -25,7 +25,7 @@ public class TigerTest extends PieceTest{
     }
 
     @Override
-    protected int canMoveTo(BoardObj dest) {
+    protected int canMoveTo(BoardObjTest dest) {
         if (dest.getType().equals("Den") &&
             dest.getParty() == this.getParty()){
                 return 1;
@@ -37,9 +37,9 @@ public class TigerTest extends PieceTest{
     }
 
     @Override
-    protected Coordinate calFinalDest(Coordinate dest, Board board, int dx, int dy) {
-        while (board.at(dest).equals("Water")){
-            if (!board.pick(dest).getAnimal().equals(null)){
+    protected Coordinate calFinalDest(Coordinate dest, BoardTest board, int dx, int dy) {
+        while (board.at(dest).getType().equals("Water")){
+            if (board.pick(dest) != null){
                 return dest;
             }
             dest = new Coordinate(dest.getX()+dx, dest.getY()+dy);

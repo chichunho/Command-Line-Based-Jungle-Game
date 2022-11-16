@@ -19,21 +19,29 @@ public class UnitTestInitializeTest
     public void BoardInitializeTest()
     {
         BoardTest testboard = new BoardTest();
-        assertEquals("Tiger", testboard.pick((new Coordinate(1,1))).getAnimal());
-        assertEquals("Elephant", testboard.pick((new Coordinate(1,3))).getAnimal());
-        assertEquals("Cat", testboard.pick((new Coordinate(2,2))).getAnimal());
-        assertEquals("Wolf", testboard.pick((new Coordinate(3,3))).getAnimal());
-        assertEquals("Leopard", testboard.pick((new Coordinate(5,3))).getAnimal());
-        assertEquals("Dog", testboard.pick((new Coordinate(6,2))).getAnimal());
-        assertEquals("Lion", testboard.pick((new Coordinate(7,1))).getAnimal());
-        assertEquals("Rat", testboard.pick((new Coordinate(7,3))).getAnimal());
-        assertEquals("Tiger", testboard.pick((new Coordinate(7,9))).getAnimal());
-        assertEquals("Elephant", testboard.pick((new Coordinate(7,7))).getAnimal());
-        assertEquals("Cat", testboard.pick((new Coordinate(6,8))).getAnimal());
-        assertEquals("Wolf", testboard.pick((new Coordinate(5,7))).getAnimal());
-        assertEquals("Leopard", testboard.pick((new Coordinate(3,7))).getAnimal());
-        assertEquals("Dog", testboard.pick((new Coordinate(2,8))).getAnimal());
-        assertEquals("Lion", testboard.pick((new Coordinate(1,9))).getAnimal());
-        assertEquals("Rat", testboard.pick((new Coordinate(1,7))).getAnimal());
+        assertEquals("Tiger", testboard.pick((new Coordinate("A1"))).getAnimal());
+        assertEquals("Tiger", testboard.pick((new Coordinate("G9"))).getAnimal());
+
+        assertEquals("Elephant", testboard.pick((new Coordinate("A3"))).getAnimal());
+        assertEquals("Elephant", testboard.pick((new Coordinate("G7"))).getAnimal());
+
+        assertEquals("Cat", testboard.pick((new Coordinate("B2"))).getAnimal());
+        assertEquals("Cat", testboard.pick((new Coordinate("F8"))).getAnimal());
+
+        assertEquals("Wolf", testboard.pick((new Coordinate("C3"))).getAnimal());
+        assertEquals("Wolf", testboard.pick((new Coordinate("E7"))).getAnimal());
+
+        assertEquals("Leopard", testboard.pick((new Coordinate("E3"))).getAnimal());
+        assertEquals("Leopard", testboard.pick((new Coordinate("C7"))).getAnimal());
+
+        assertEquals("Dog", testboard.pick((new Coordinate("F2"))).getAnimal());
+        assertEquals("Dog", testboard.pick((new Coordinate("B8"))).getAnimal());
+
+        assertEquals("Lion", testboard.pick((new Coordinate("G1"))).getAnimal());
+        assertEquals("Lion", testboard.pick((new Coordinate("A9"))).getAnimal());
+
+        assertEquals("Rat", testboard.pick((new Coordinate("G3"))).getAnimal());
+        assertEquals("Rat", testboard.pick((new Coordinate("A7"))).getAnimal());
+
     }
 }

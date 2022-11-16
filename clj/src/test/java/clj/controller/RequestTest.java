@@ -9,9 +9,10 @@ public class RequestTest {
 
     private PlayerTest player;
 
+    /* in test, this will become a public constructor */
     public RequestTest(PlayerTest player, Coordinate coordinate, int dx, int dy){
-        this.dx = 0;
-        this.dy = 0;
+        this.dx = dx;
+        this.dy = dy;
         this.coordinate = coordinate;
         this.player = player;
     }
@@ -28,7 +29,11 @@ public class RequestTest {
         return coordinate;
     }
 
-    public PlayerTest getPlayer(){
-        return this.player;
+    public int getPlayerParty(){
+        return this.player.getParty();
+    }
+
+    public String getPlayerName(){
+        return this.player.getName();
     }
 }

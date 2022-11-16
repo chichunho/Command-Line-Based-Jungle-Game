@@ -3,14 +3,12 @@ package clj.model;
 public class Response {
     private int messageId;
     private String[] arguments;
-    private boolean isEndGame;
     private Piece[][] pieces;
     
-    protected Response(int messageId, String[] arguments, Piece[][] pieces, boolean isEndGame){
+    protected Response(int messageId, String[] arguments, Piece[][] pieces){
         this.messageId = messageId;
         this.arguments = arguments;
         this.pieces = pieces;
-        this.isEndGame = isEndGame;
     }
 
     public int getMsgId(){
@@ -19,10 +17,6 @@ public class Response {
 
     public String[] getArguments(){
         return this.arguments;
-    }
-
-    public boolean getIsEndGame(){
-        return this.isEndGame;
     }
 
     public String getPieceAnimal(int x, int y){

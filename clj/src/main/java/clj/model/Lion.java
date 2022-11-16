@@ -10,8 +10,8 @@ public class Lion extends Piece{
 
     @Override
     protected Coordinate calFinalDest(Coordinate dest, Board board, int dx, int dy) {
-        while (board.at(dest).equals("Water")){
-            if (!board.pick(dest).getAnimal().equals(null)){
+        while (board.at(dest).getType().equals("Water")){
+            if (board.pick(dest) != null){
                 return dest;
             }
             dest = new Coordinate(dest.getX()+dx, dest.getY()+dy);
