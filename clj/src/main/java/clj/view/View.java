@@ -9,36 +9,12 @@ public class View implements ModelViewInterface, ControllerViewInterface{
     final String ANSI_RESET = "\u001B[0m";
     final String ANSI_RED = "\u001B[31m";
     final String ANSI_BLUE = "\u001B[34m";
-    
-    /*
-    public static int redlion_xcoordinate = 1, redlion_ycoordinate = 1;
-    public static int redtiger_xcoordinate = 13, redtiger_ycoordinate = 1;
-    public static int reddog_xcoordinate = 3, reddog_ycoordinate = 3;
-    public static int redcat_xcoordinate = 11, redcat_ycoordinate = 3;
-    public static int redrat_xcoordinate = 1, redrat_ycoordinate = 5;
-    public static int redleopard_xcoordinate = 5, redleopard_ycoordinate = 5;
-    public static int redwolf_xcoordinate = 9, redwolf_ycoordinate = 5;
-    public static int redelephant_xcoordinate = 13, redelephant_ycoordinate = 5;
-    public static int bluelion_xcoordinate = 13, bluelion_ycoordinate = 17;
-    public static int bluetiger_xcoordinate = 1, bluetiger_ycoordinate = 17;
-    public static int bluedog_xcoordinate = 3, bluedog_ycoordinate = 15;
-    public static int bluecat_xcoordinate = 11, bluecat_ycoordinate = 15;
-    public static int bluerat_xcoordinate = 11, bluerat_ycoordinate = 13;
-    public static int blueleopard_xcoordinate = 9, blueleopard_ycoordinate = 13;
-    public static int bluewolf_xcoordinate = 5, bluewolf_ycoordinate = 13;
-    public static int blueelephant_xcoordinate = 1, blueelephant_ycoordinate = 13;
-    */
 
     final int[] RED_X = {1, 13, 3, 11, 1, 5, 9, 13};
     final int[] RED_Y = {1, 1, 3, 3, 5, 5, 5, 5};
     final int[] BLUE_X = {13, 1, 3, 11, 13, 9, 5, 1};
     final int[] BLUE_Y = {17, 17, 15, 15, 13, 13, 13, 13};
     final String[] ANIMAL_NAME = {"獅", "虎", "狗", "貓", "鼠", "豹", "狼", "象"};
-
-    /*
-    public static boolean redlion_alive = true, redtiger_alive = true, reddog_alive = true, redcat_alive = true, redrat_alive = true, redleopard_alive = true, redwolf_alive = true, redelephant_alive = true,
-    bluelion_alive = true, bluetiger_alive = true, bluedog_alive = true, bluecat_alive = true, bluerat_alive = true, blueleopard_alive = true, bluewolf_alive = true, blueelephant_alive = true;
-    */
 
     public void printInit(){
 
@@ -70,15 +46,35 @@ public class View implements ModelViewInterface, ControllerViewInterface{
             board[BLUE_Y[i]][BLUE_X[i]] = ANSI_BLUE + ANIMAL_NAME[i] + ANSI_RESET;
         }
 
+        char colIndex = 'A';
+        int rowIndex = 9;
         for (int i = 0; i < 19; i++){
+            if (i%2 == 1){
+                System.out.print(rowIndex+" ");
+                rowIndex--;
+            }
+            else{
+                System.out.print("  ");
+            }
             for (int j = 0; j < 15; j++){
                 System.out.print(board[i][j]);
             }
             System.out.print('\n');
         }
+
+        for (int i = 0; i < 8; i++){
+            if (i == 0){
+                System.out.print("   ");
+            }
+            else{
+                System.out.print((char)(colIndex+i-1)+"  ");
+            }
+        }
+        System.out.println();
     }
 
-    private void printMessage(Response response){
+    @Override
+    public void modelUpdateView(Response response){
 
         String[] arguments = response.getArguments();
 
@@ -101,37 +97,39 @@ public class View implements ModelViewInterface, ControllerViewInterface{
             case 4:
                 System.out.println("You cannot enter your den!");
                 break;
-
-            // when the piece fail to enter the water square
+            // when the jump action of lion or tiger is interupted
             case 5:
+                System.out.println(arguments[0]+" cannot jump over the river due to a rat blocking the way.");
+            // when the piece fail to enter the water square
+            case 6:
                 System.out.println("This piece cannot enter the water square!");
                 break;
 
             // when player try to move to square where containing a friendly piece
-            case 6:
+            case 7:
                 System.out.println("One of your piece has already in that square!");
                 break;
 
             // when player try to capture another higher rank piece, and it is not trapped
-            case 7:
+            case 8:
                 System.out.println("You cannot capture higher rank pieces!");
                 break;
 
             // when the rat is in water and try to capture elephant on land
-            case 8:
+            case 9:
                 System.out.println("Rat in river cannot capture enemy elephant on land!");
                 break;
 
             // when the rat is in water and try to capture enemy rat on land, or vice versa
-            case 9:
-                System.out.println("Rat in river cannot capture enemy rat on land!");
+            case 10:
+                System.out.println("Rat in river cannot capture enemy rat on land, or vice versa!");
                 break;
             // when the player move his/her piece to enemy's den
-            case 10:
+            case 11:
                 System.out.println(arguments[0]+"\'s piece has moved to the enemy\'s den, "+arguments[0]+" wins!");
                 break;
             // the piece is moved successfully or capture the enemy's piece
-            case 11:
+            case 12:
                 if (arguments[3]!=null){
                     System.out.println("Player "+arguments[0]+"\'s "+arguments[2]+" capture enemy "+arguments[3]+"!");
                 }
@@ -140,7 +138,7 @@ public class View implements ModelViewInterface, ControllerViewInterface{
                 }
                 break;
             // when a player has no pieces to play
-            case 12:
+            case 13:
                 System.out.println("Congratulations! Your opponent has no piece to play, " + arguments[0] + " win the game!");
                 break;
         }
@@ -173,7 +171,16 @@ public class View implements ModelViewInterface, ControllerViewInterface{
         // print the board with the piece location information
         int row = 0;
         int col = 0;
+        char colIndex = 'A';
+        int rowIndex = 9;
         for (int i = 0; i < 19; i++){
+            if (i%2 == 1){
+                System.out.print(rowIndex+" ");
+                rowIndex--;
+            }
+            else{
+                System.out.print("  ");
+            }
             for (int j = 0; j < 15; j++){
                 if (i%2 == 1 && j%2 == 1){
                     String pieceAnimalName = response.getPieceAnimal(col, row);
@@ -198,11 +205,16 @@ public class View implements ModelViewInterface, ControllerViewInterface{
             row += i%2;
             System.out.print('\n');
         }
-    }
 
-    @Override
-    public void modelUpdateView(Response response){
-        printMessage(response);
+        for (int i = 0; i < 8; i++){
+            if (i == 0){
+                System.out.print("   ");
+            }
+            else{
+                System.out.print((char)(colIndex+i-1)+"  ");
+            }
+        }
+        System.out.println();
     }
 
     @Override

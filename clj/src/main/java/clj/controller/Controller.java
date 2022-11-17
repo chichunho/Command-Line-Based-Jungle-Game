@@ -8,10 +8,12 @@ public class Controller {
     Request request;
     Scanner scanner;
     ControllerViewInterface CVInter;
+    ControllerModelInterface CMInter;
 
-    public Controller(Scanner scanner, ControllerViewInterface CVInter){
+    public Controller(Scanner scanner, ControllerViewInterface CVInter, ControllerModelInterface CMInter){
         this.scanner = scanner;
         this.CVInter = CVInter;
+        this.CMInter = CMInter;
     }
     // TODO fill the javadoc
     /**
@@ -70,14 +72,13 @@ public class Controller {
      * @param currentPlayer
      * @return Request object
      */
-    public Request getUserRequest(Player currentPlayer){
+    public int processUserRequest(Player currentPlayer){
         
         String userInputPiece;
         String userInputDirect;
         int userDirect[];
         Coordinate userCoor;
-        
-        Request userReq;
+        int modelRet;
 
         CVInter.printTurnInfo(currentPlayer.getName(), currentPlayer.getParty());
         do {
@@ -94,9 +95,9 @@ public class Controller {
         //Coordinate class already have constructor with string param, parsePiece() is not necessary
         userCoor = parsePiece(userInputPiece);  
 
-        userReq = new Request(currentPlayer, userCoor, userDirect[0], userDirect[1]);
+        modelRet = CMInter.runRequest(new Request(currentPlayer, userCoor, userDirect[0], userDirect[1]));
 
-        return userReq;
+        return modelRet;
     }
 
     // TODO fill the javadoc

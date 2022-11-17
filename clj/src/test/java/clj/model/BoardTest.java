@@ -100,14 +100,17 @@ public class BoardTest {
             int targetParty = pieces[to.getRow()][to.getCol()].getParty();
             pieceCount[targetParty-1]--;
         }
+
         pieces[to.getRow()][to.getCol()] = pieces[from.getRow()][from.getCol()];
         pieces[from.getRow()][from.getCol()] = null;
+
         if (terrain[to.getRow()][to.getCol()].getType().equals("Water")){
             pieces[to.getRow()][to.getCol()].setInWater(true);
         }
         else{
             pieces[to.getRow()][to.getCol()].setInWater(false);
         }
+        
         if (terrain[to.getRow()][to.getCol()].getType().equals("Trap")){
             pieces[to.getRow()][to.getCol()].setTrapped(true);
         }

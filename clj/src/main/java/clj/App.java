@@ -3,10 +3,9 @@ package clj;
 import java.util.Scanner;
 
 import clj.controller.Controller;
-import clj.controller.Player;
-import clj.controller.Request;
 import clj.model.Model;
 import clj.view.View;
+import clj.controller.Player;
 
 public class App 
 {
@@ -14,10 +13,9 @@ public class App
     {
         Scanner scanner = new Scanner(System.in);
         View view = new View();
-        Controller controller = new Controller(scanner, view);
         Model model = new Model(view);
+        Controller controller = new Controller(scanner, view, model);
 
-        Request request;
         int ret = 0;
 
         Player[] players;
@@ -29,12 +27,11 @@ public class App
 
         view.printInit();
 
-        while(ret != 10 || ret != 12){
+        while(ret != 11 || ret != 13){
             currentPlayer = players[turn%2];
 
-            request = controller.getUserRequest(currentPlayer);
-            ret = model.run(request);
-            if (ret > 9){
+            ret = controller.processUserRequest(currentPlayer);
+            if (ret > 10){
                 turn++;
             } 
         }

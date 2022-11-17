@@ -1,19 +1,37 @@
 package clj.model;
 
 import static org.junit.Assert.assertEquals;
-import clj.controller.Coordinate;
+
+import org.junit.Before;
 import org.junit.Test;
 
+import clj.controller.Coordinate;
 
-public class UnitTestInitializeTest
-{
-    
+public class UnitTestBoardTest {
+
+    Coordinate c1, c2;
+    PieceTest p1lion, p2rat;
+    BoardTest testBoard;
+
+    @Before
+    public void init(){
+        c1 = new Coordinate("D8");
+        c2 = new Coordinate("D7");
+
+        testBoard = new BoardTest();
+        testBoard.testEmptyBoardPieces();
+        p1lion = new LionTest(1);
+        p1lion.setTrapped(true);
+        p2rat = new RatTest(2);
+        // Lion at D7
+        testBoard.testSetPiece(p1lion,c2);
+        // Rat at D8
+        testBoard.testSetPiece(p2rat,c1);
+    }
 
     /**
      * Functionality:
      * This is testing if the initialize process executed properly
-     * Expected:
-     * All pieces are located at their default position in the begining
      */
     @Test
     public void BoardInitializeTest()
@@ -43,5 +61,16 @@ public class UnitTestInitializeTest
         assertEquals("Rat", testboard.pick((new Coordinate("G3"))).getAnimal());
         assertEquals("Rat", testboard.pick((new Coordinate("A7"))).getAnimal());
 
+    }
+
+    /**
+     * Functionality:
+     * This is testing if the board update the counting when a piece is removeed from the board
+     */
+    @Test
+    public void boardChangeAfterCapture(){
+        testBoard.move(c1, c2);
+        // the piece count of opposite party shall be 0
+        assertEquals(0, testBoard.getPieceCount()[0]);
     }
 }

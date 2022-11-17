@@ -11,7 +11,7 @@ public class LionTest extends PieceTest{
     @Override
     protected Coordinate calFinalDest(Coordinate dest, BoardTest board, int dx, int dy) {
         while (board.at(dest).getType().equals("Water")){
-            if (!board.pick(dest).getAnimal().equals(null)){
+            if (board.pick(dest) != null){
                 return dest;
             }
             dest = new Coordinate(dest.getCol()+dx, dest.getRow()+dy);
