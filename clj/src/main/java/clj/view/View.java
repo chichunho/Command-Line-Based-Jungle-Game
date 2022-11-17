@@ -29,7 +29,7 @@ public class View {
 
     final int[] RED_X = {1, 13, 3, 11, 1, 5, 9, 13};
     final int[] RED_Y = {1, 1, 3, 3, 5, 5, 5, 5};
-    final int[] BLUE_X = {13, 1, 3, 11, 11, 9, 5, 1};
+    final int[] BLUE_X = {13, 1, 3, 11, 13, 9, 5, 1};
     final int[] BLUE_Y = {17, 17, 15, 15, 13, 13, 13, 13};
     final String[] ANIMAL_NAME = {"獅", "虎", "狗", "貓", "鼠", "豹", "狼", "象"};
 
