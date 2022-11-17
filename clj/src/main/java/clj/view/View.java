@@ -246,7 +246,7 @@ public class View implements ModelViewInterface, ControllerViewInterface{
             System.out.print("(Red)");
         }
         else{
-            System.out.print("(Blue");
+            System.out.print("(Blue)");
         }
         System.out.println("\'s turn.");
     }
