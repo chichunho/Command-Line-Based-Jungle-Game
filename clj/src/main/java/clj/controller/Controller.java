@@ -13,9 +13,9 @@ public class Controller {
     }
     // TODO fill the javadoc
     /**
-     * 
+     * This function validate user's input piece string
      * @param pos
-     * @return
+     * @return boolean 
      */
     private boolean validatePiece(String pos){
 
@@ -42,9 +42,9 @@ public class Controller {
 
     // TODO fill the javadoc
     /**
-     * 
+     * this function validate user input direction string
      * @param pos
-     * @return
+     * @return boolean
      */
     private boolean validateDirection(String pos){
 
@@ -64,9 +64,9 @@ public class Controller {
 
     // TODO fill the javadoc
     /**
-     * 
+     * this fucntion prompt user to select piece and direction in every turn
      * @param currentPlayer
-     * @return
+     * @return Request object
      */
     public Request getUserRequest(Player currentPlayer){
         
@@ -100,20 +100,21 @@ public class Controller {
 
     // TODO fill the javadoc
     /**
-     * 
+     * this function parse user input direction string to integer array
      * @param pos
-     * @return
+     * @return integer array,[0] is x, [1] is y
      */
     private int[] parseDirection(String pos) {
         //If userDirect pass validateDirect(), parse to request dx,dy
         int temp[] = new int[2];
         
+        char userDirect = Character.toLowerCase(pos);
         // this follows the program array index
         // 'w' means move forward, so y-coordinate should -1
         // 'a' means move to the left, so x-coordinate should -1
         // 's' means move backward, so y-coordinate should +1,
         // 'd' means move to the right, so x-cooridnate should +1
-        switch(pos){
+        switch(userDirect){
             case "w":
                 temp[0] = 0;
                 temp[1] = -1;
@@ -135,9 +136,9 @@ public class Controller {
 
     // TODO fill the javadoc
     /**
-     * 
+     * This function parse user input piece string to coordinate object
      * @param pos
-     * @return
+     * @return coordinate object
      */
     private Coordinate parsePiece(String pos){
         // if userPiece pass validatePiece, parse to coordinate
@@ -147,8 +148,8 @@ public class Controller {
 
     // TODO fill the javadoc
     /**
-     * 
-     * @return
+     * this function prompt user to input players' information at the start of the game
+     * @return player object array
      */
     public Player[] getUserInfo() {
 
