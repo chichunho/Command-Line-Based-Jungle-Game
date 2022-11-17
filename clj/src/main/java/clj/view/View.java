@@ -1,8 +1,10 @@
 package clj.view;
 
 import clj.model.Response;
+import clj.controller.ControllerViewInterface;
+import clj.model.ModelViewInterface;
 
-public class View {
+public class View implements ModelViewInterface, ControllerViewInterface{
     
     final String ANSI_RESET = "\u001B[0m";
     final String ANSI_RED = "\u001B[31m";
@@ -76,7 +78,7 @@ public class View {
         }
     }
 
-    public void printMessage(Response response){
+    private void printMessage(Response response){
 
         String[] arguments = response.getArguments();
 
@@ -196,221 +198,74 @@ public class View {
             row += i%2;
             System.out.print('\n');
         }
-        /*
-        for (int i=0; i<19; i++){
-            System.out.println();
-            for (int j=0; j<15; j++) {
-                if (i==redlion_ycoordinate && j==redlion_xcoordinate && redlion_alive){
-                    System.out.print(ANSI_RED + '獅' + ANSI_RESET);
-                }
-                else if (i==redtiger_ycoordinate && j==redtiger_xcoordinate && redtiger_alive) {
-                    System.out.print(ANSI_RED + '虎' + ANSI_RESET);
-                }
-                else if (i==reddog_ycoordinate && j==reddog_xcoordinate && reddog_alive) {
-                    System.out.print(ANSI_RED + '狗' + ANSI_RESET);
-                }
-                else if (i==redcat_ycoordinate && j==redcat_xcoordinate && redcat_alive) {
-                    System.out.print(ANSI_RED + '貓' + ANSI_RESET);
-                }
-                else if (i==redrat_ycoordinate && j==redrat_xcoordinate && redrat_alive){
-                    System.out.print(ANSI_RED + '鼠' + ANSI_RESET);
-                }
-                else if (i==redleopard_ycoordinate && j==redleopard_xcoordinate && redleopard_alive){
-                    System.out.print(ANSI_RED + '豹' + ANSI_RESET);
-                }
-                else if (i==redwolf_ycoordinate && j==redwolf_xcoordinate && redwolf_alive){
-                    System.out.print(ANSI_RED + '狼' + ANSI_RESET);
-                }
-                else if (i==redelephant_ycoordinate && j==redelephant_xcoordinate && redelephant_alive){
-                    System.out.print(ANSI_RED + '象' + ANSI_RESET);
-                }
-                else if (i==blueelephant_ycoordinate && j==blueelephant_xcoordinate && blueelephant_alive){
-                    System.out.print(ANSI_BLUE + '象' + ANSI_RESET);
-                }
-                else if (i==bluewolf_ycoordinate && j==bluewolf_xcoordinate && bluewolf_alive){
-                    System.out.print(ANSI_BLUE + '狼' + ANSI_RESET);
-                }
-                else if (i==blueleopard_ycoordinate && j==blueleopard_xcoordinate && blueleopard_alive){
-                    System.out.print(ANSI_BLUE + '豹' + ANSI_RESET);
-                }
-                else if (i==bluerat_ycoordinate && j==bluerat_xcoordinate && bluerat_alive){
-                    System.out.print(ANSI_BLUE + '鼠' + ANSI_RESET);
-                }
-                else if (i==bluedog_ycoordinate && j==bluedog_xcoordinate && bluedog_alive) {
-                    System.out.print(ANSI_BLUE + '狗' + ANSI_RESET);
-                }
-                else if (i==bluecat_ycoordinate && j==bluecat_xcoordinate && bluecat_alive) {
-                    System.out.print(ANSI_BLUE + '貓' + ANSI_RESET);
-                }
-                else if (i==bluetiger_ycoordinate && j==bluetiger_xcoordinate && bluetiger_alive){
-                    System.out.print(ANSI_BLUE + '虎' + ANSI_RESET);
-                }
-                else if (i==bluelion_ycoordinate && j==bluelion_xcoordinate && bluelion_alive) {
-                    System.out.print(ANSI_BLUE + '獅' + ANSI_RESET);
-                }
-                else {
-                    System.out.print((board[i][j]));
-                }
-            }
-        }
-        */
     }
 
-    public void updateView(Response response){
-
+    @Override
+    public void modelUpdateView(Response response){
         printMessage(response);
+    }
 
-        /*
-        // update the pieces information in View
-        for (int i=0;i<9;i++){
-            for (int j=0;j<7;j++){
-                if (Objects.equals(response.getPieceAnimal(i,j), "Lion") && response.getPieceParty(i,j)==1){
-                    redlion_xcoordinate = j*2+1;
-                    redlion_ycoordinate = i*2+1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Tiger") && response.getPieceParty(i,j)==1) {
-                    redtiger_xcoordinate = j * 2 + 1;
-                    redtiger_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Dog") && response.getPieceParty(i,j)==1) {
-                    reddog_xcoordinate = j * 2 + 1;
-                    reddog_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Cat") && response.getPieceParty(i,j)==1) {
-                    redcat_xcoordinate = j * 2 + 1;
-                    redcat_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Rat") && response.getPieceParty(i,j)==1) {
-                    redrat_xcoordinate = j * 2 + 1;
-                    redrat_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Leopard") && response.getPieceParty(i,j)==1) {
-                    redleopard_xcoordinate = j * 2 + 1;
-                    redleopard_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Wolf") && response.getPieceParty(i,j)==1) {
-                    redwolf_xcoordinate = j * 2 + 1;
-                    redwolf_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Elephant") && response.getPieceParty(i,j)==1) {
-                    redelephant_xcoordinate = j * 2 + 1;
-                    redelephant_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Lion") && response.getPieceParty(i,j)==2){
-                    redlion_xcoordinate = j*2+1;
-                    redlion_ycoordinate = i*2+1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Tiger") && response.getPieceParty(i,j)==2) {
-                    redtiger_xcoordinate = j * 2 + 1;
-                    redtiger_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Dog") && response.getPieceParty(i,j)==2) {
-                    reddog_xcoordinate = j * 2 + 1;
-                    reddog_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Cat") && response.getPieceParty(i,j)==2) {
-                    redcat_xcoordinate = j * 2 + 1;
-                    redcat_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Rat") && response.getPieceParty(i,j)==2) {
-                    redrat_xcoordinate = j * 2 + 1;
-                    redrat_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Leopard") && response.getPieceParty(i,j)==2) {
-                    redleopard_xcoordinate = j * 2 + 1;
-                    redleopard_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Wolf") && response.getPieceParty(i,j)==2) {
-                    redwolf_xcoordinate = j * 2 + 1;
-                    redwolf_ycoordinate = i * 2 + 1;
-                }
-                else if (Objects.equals(response.getPieceAnimal(i,j), "Elephant") && response.getPieceParty(i,j)==2) {
-                    redelephant_xcoordinate = j * 2 + 1;
-                    redelephant_ycoordinate = i * 2 + 1;
-                }
-            }
+    @Override
+    public void promptPlayerName(int count) {
+        if (count == 0){
+            System.out.println("Please Enter the first player's name: ");
         }
-        */
-
-        /*
-        String lose_piece = response.getArguments()[3];
-        String player = response.getArguments()[1];
-        */
-
-        /*
-        // set the pieces is not alive when they are captured
-        if (lose_piece!=null) {
-            if (Objects.equals(player, "1")) {
-                switch (lose_piece) {
-                    case "Lion":
-                        bluelion_alive = false;
-                        break;
-
-                    case "Tiger":
-                        bluetiger_alive = false;
-                        break;
-
-                    case "Dog":
-                        bluedog_alive = false;
-                        break;
-
-                    case "Cat":
-                        bluecat_alive = false;
-                        break;
-
-                    case "Rat":
-                        bluerat_alive = false;
-                        break;
-
-                    case "Leopard":
-                        blueleopard_alive = false;
-                        break;
-
-                    case "Wolf":
-                        bluewolf_alive = false;
-                        break;
-
-                    case "Elephant":
-                        blueelephant_alive = false;
-                        break;
-                }
-            }
-            else if (Objects.equals(player, "2")) {
-                switch (lose_piece) {
-                    case "Lion":
-                        redlion_alive = false;
-                        break;
-
-                    case "Tiger":
-                        redtiger_alive = false;
-                        break;
-
-                    case "Dog":
-                        reddog_alive = false;
-                        break;
-
-                    case "Cat":
-                        redcat_alive = false;
-                        break;
-
-                    case "Rat":
-                        redrat_alive = false;
-                        break;
-
-                    case "Leopard":
-                        redleopard_alive = false;
-                        break;
-
-                    case "Wolf":
-                        redwolf_alive = false;
-                        break;
-
-                    case "Elephant":
-                        redelephant_alive = false;
-                        break;
-                }
-            }
+        if (count == 1){
+            System.out.print("Please enter the second player's name: ");
         }
-        */
+    }
+
+    @Override
+    public void printPlayerInfo(String p1, String p2, int p1Party) {
+        if (p1Party == 1){
+            System.out.println(p1+" is Party Red.");
+            System.out.println(p2+" is Party Blue.");
+        }
+        else{
+            System.out.println(p1+" is Party Blue.");
+            System.out.println(p2+" is Party Red.");
+        }
+    }
+
+    @Override
+    public void printTurnInfo(String currentPlayer, int party) {
+        System.out.print("Now is "+currentPlayer);
+        if (party == 1){
+            System.out.print("(Red)");
+        }
+        else{
+            System.out.print("(Blue");
+        }
+        System.out.println("\'s turn.");
+    }
+
+    @Override
+    public void promptPlayerSelectPiece() {
+        System.out.print("Please select Piece: ");
+    }
+
+    @Override
+    public void promptPlayerSelectDirection() {
+        System.out.print("Please select Direction: ");
+    }
+
+    @Override
+    public void alertPieceWrongLength() {
+        System.out.println("Invalid input: input should consist 1 english letter and one number.");
+    }
+
+    @Override
+    public void alertPieceWrongFormat() {
+        System.out.println("Invalid input: The input should follow the format of [A-G][1-9], e.g. A3.");
+    }
+
+    @Override
+    public void alertDirectionWrongLength() {
+        System.out.println("Invalid input: input should consists 1 character");
+    }
+
+    @Override
+    public void alertDirectionWrongFormat() {
+        System.out.println("Invalid Direction selected");
     }
 }

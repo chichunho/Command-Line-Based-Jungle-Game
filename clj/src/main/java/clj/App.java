@@ -14,7 +14,7 @@ public class App
     {
         Scanner scanner = new Scanner(System.in);
         View view = new View();
-        Controller controller = new Controller(scanner);
+        Controller controller = new Controller(scanner, view);
         Model model = new Model(view);
 
         Request request;

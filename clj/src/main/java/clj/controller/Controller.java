@@ -7,9 +7,11 @@ public class Controller {
     
     Request request;
     Scanner scanner;
+    ControllerViewInterface CVInter;
 
-    public Controller(Scanner scanner){
+    public Controller(Scanner scanner, ControllerViewInterface CVInter){
         this.scanner = scanner;
+        this.CVInter = CVInter;
     }
     // TODO fill the javadoc
     /**
@@ -21,7 +23,7 @@ public class Controller {
 
         // if the string length is not 2, it must be invalid
         if (pos.length()!=2){
-            System.out.println("Invalid input: input should consist 1 english letter and one number.");
+            CVInter.alertPieceWrongLength();
             return false;
         }
 
@@ -33,7 +35,7 @@ public class Controller {
 
         // validate the format [A-G][1-9]
         if (col < 'A' || col > 'G' || row < '1' || row > '9'){
-            System.out.println("Invalid input: The input should follow the format of [A-G][1-9], e.g. A3.");
+            CVInter.alertPieceWrongFormat();
             return false;
         }
 
@@ -49,13 +51,13 @@ public class Controller {
     private boolean validateDirection(String pos){
 
         if (pos.length()!= 1){
-            System.out.println("Invalid input: input should consists 1 character");
+            CVInter.alertDirectionWrongLength();
             return false;
         }
         char userDirect = Character.toLowerCase(pos.charAt(0));
 
         if (userDirect !='w' && userDirect != 's' && userDirect !='d' && userDirect !='a'){
-            System.out.println("Invalid Direction selected");
+            CVInter.alertDirectionWrongFormat();
             return false;
         }
 
@@ -77,15 +79,14 @@ public class Controller {
         
         Request userReq;
 
-        System.out.println("Now is "+currentPlayer.getName()+"\'s turn.");
-
+        CVInter.printTurnInfo(currentPlayer.getName(), currentPlayer.getParty());
         do {
-            System.out.print("Please select Piece: ");
+            CVInter.promptPlayerSelectPiece();
             userInputPiece = scanner.nextLine();
         }while(validatePiece(userInputPiece)==false);
 
         do {
-            System.out.print("Please select Direction: ");
+            CVInter.promptPlayerSelectDirection();
             userInputDirect = scanner.nextLine();
         }while(validateDirection(userInputDirect)==false);
 
@@ -104,30 +105,30 @@ public class Controller {
      * @param pos
      * @return integer array,[0] is x, [1] is y
      */
-    private int[] parseDirection(String pos) {
+    private int[] parseDirection(String direction) {
         //If userDirect pass validateDirect(), parse to request dx,dy
         int temp[] = new int[2];
         
-        char userDirect = Character.toLowerCase(pos);
+        char userDirect = Character.toLowerCase(direction.charAt(0));
         // this follows the program array index
         // 'w' means move forward, so y-coordinate should -1
         // 'a' means move to the left, so x-coordinate should -1
         // 's' means move backward, so y-coordinate should +1,
         // 'd' means move to the right, so x-cooridnate should +1
         switch(userDirect){
-            case "w":
+            case 'w':
                 temp[0] = 0;
                 temp[1] = -1;
                 break;
-            case "a":
+            case 'a':
                 temp[0] = -1;
                 temp[1] = 0;
                 break;
-            case "s":
+            case 's':
                 temp[0] = 0;
                 temp[1] = 1;
                 break;
-            case "d":
+            case 'd':
                 temp[0] = 1;
                 temp[1] = 0;
         }
@@ -158,10 +159,9 @@ public class Controller {
         Player[] players = new Player[2];
 
         // ask for user input
-        System.out.print("Please Enter the first player's name: ");
+        CVInter.promptPlayerName(0);
         playerNames[0] = scanner.nextLine();
-
-        System.out.print("Please enter the second player's name: ");
+        CVInter.promptPlayerName(1);
         playerNames[1] = scanner.nextLine();
 
         Random rand = new Random();
@@ -183,15 +183,7 @@ public class Controller {
             players[1] = temp;
         }
 
-        for (int i = 0; i < 2; i++){
-            System.out.print(players[i].getName()+" is Party ");
-            if (players[i].getParty() == 1){
-                System.out.println("Red.");
-            }
-            else{
-                System.out.println("Blue.");
-            }
-        }
+        CVInter.printPlayerInfo(players[0].getName(), players[1].getName(), players[0].getParty());
 
         return players;
     }
