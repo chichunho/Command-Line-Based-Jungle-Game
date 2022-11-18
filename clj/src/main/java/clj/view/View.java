@@ -99,7 +99,7 @@ public class View implements ModelViewInterface, ControllerViewInterface{
                 break;
             // when the player choose the opponent's piece
             case 2:
-                System.out.println("You can not choose opponent's piece.");
+                System.out.println("You cannot choose opponent's piece.");
                 System.out.println("Please input again.");
                 break;
             // when pieces move out of bound
@@ -245,10 +245,10 @@ public class View implements ModelViewInterface, ControllerViewInterface{
     @Override
     public void promptPlayerName(int count) {
         if (count == 0){
-            System.out.println("Please Enter the first player's name: ");
+            System.out.print("Please Enter the first player's name: ");
         }
         if (count == 1){
-            System.out.println("Please enter the second player's name: ");
+            System.out.print("Please enter the second player's name: ");
         }
     }
 

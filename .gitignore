@@ -7,3 +7,6 @@ unit_test
 .vscode
 API_Design_Test_Suite_Revision.docx
 final_class_dia.drawio.png
+clj/src/test/java/clj/model/test_coverage.txt
+gp20_Developer_Manual.docx
+gp20_User_Manual.docx
