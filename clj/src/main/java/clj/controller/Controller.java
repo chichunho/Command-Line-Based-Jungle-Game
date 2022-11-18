@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class Controller {
     
-    Request request;
     Scanner scanner;
     ControllerViewInterface CVInter;
     ControllerModelInterface CMInter;

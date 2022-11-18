@@ -66,7 +66,7 @@ public class UnitTestPieceTest {
 
     /**
      * Functionality:
-     * This is testing if the canCapture method is work as we designed.
+     * This is testing if the canCapture method worked as we designed.
      * Except rat, all pieces have the same canCapture method implementation
      */
     @Test
@@ -94,8 +94,29 @@ public class UnitTestPieceTest {
     }
 
     /**
+     * Functionality:
+     * This is testing if the canMoveTo method worked as we designed
+     */
+    @Test
+    public void canMoveToTest(){
+        BoardObj waterSquare = new BoardObj("Water", 0);
+        BoardObj ownDen = new BoardObj("Den", 1);
+        BoardObj landSquare = new BoardObj("Land", 0);
+        for (int i = 0; i < 8; i++){
+            assertEquals(1, p1Pieces[i].canMoveTo(ownDen));
+            assertEquals(0, p1Pieces[i].canMoveTo(landSquare));
+            if (i == 7){
+                assertEquals(0, p1Pieces[i].canMoveTo(waterSquare));
+            }
+            else{
+                assertEquals(2, p1Pieces[i].canMoveTo(waterSquare));
+            }
+        }
+    }
+
+    /**
      * Functionalilty:
-     * This is testing if the canCapture method work as we designed (rat only)
+     * This is testing if the canCapture method worked as we designed (rat only)
      */
     @Test
     public void ratCanCaptureTest(){
@@ -126,7 +147,7 @@ public class UnitTestPieceTest {
 
     /**
      * Functionality:
-     * This is testing if canMoveTo method work as we designed (rat only)
+     * This is testing if canMoveTo method worked as we designed (rat only)
      */
     @Test
     public void ratCanMoveToTest(){
@@ -141,7 +162,7 @@ public class UnitTestPieceTest {
 
      /**
       * Functionality:
-      * This is testing if the calFinalDest work as we designed (jump animals only)
+      * This is testing if the calFinalDest worked as we designed (jump animals only)
       */
     @Test
     public void lionTigerCalFinalDestTest(){
