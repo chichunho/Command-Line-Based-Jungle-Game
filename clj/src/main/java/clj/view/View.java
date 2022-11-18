@@ -248,7 +248,7 @@ public class View implements ModelViewInterface, ControllerViewInterface{
             System.out.println("Please Enter the first player's name: ");
         }
         if (count == 1){
-            System.out.print("Please enter the second player's name: ");
+            System.out.println("Please enter the second player's name: ");
         }
     }
 
