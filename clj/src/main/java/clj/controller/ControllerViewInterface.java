@@ -1,5 +1,8 @@
 package clj.controller;
 
+/**
+ * This provide a interface for Controller to update the View
+ */
 public interface ControllerViewInterface {
     /**
     * This function is to ask the players to input their name

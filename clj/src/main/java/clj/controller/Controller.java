@@ -14,11 +14,11 @@ public class Controller {
         this.CVInter = CVInter;
         this.CMInter = CMInter;
     }
-    // TODO fill the javadoc
+
     /**
-     * This function validate user's input piece string
-     * @param pos
-     * @return boolean 
+     * This function validates user's input piece string
+     * @param pos       The position string in format of [A-G][1-9]
+     * @return          The boolean value, true for valid input, false for invalid input
      */
     private boolean validatePiece(String pos){
 
@@ -43,20 +43,21 @@ public class Controller {
         return true;
     }
 
-    // TODO fill the javadoc
     /**
-     * this function validate user input direction string
-     * @param pos
-     * @return boolean
+     * This function validates user input direction string
+     * @param pos       The direction string
+     * @return          The boolean value, true for valid input, false for invalid input
      */
     private boolean validateDirection(String pos){
 
+        // if the length is not equal to 1
         if (pos.length()!= 1){
             CVInter.alertDirectionWrongLength();
             return false;
         }
         char userDirect = Character.toLowerCase(pos.charAt(0));
 
+        // if the string is not one of the (w, a, s, d)
         if (userDirect !='w' && userDirect != 's' && userDirect !='d' && userDirect !='a'){
             CVInter.alertDirectionWrongFormat();
             return false;
@@ -65,11 +66,10 @@ public class Controller {
         return true;
     }
 
-    // TODO fill the javadoc
     /**
-     * this fucntion prompt user to select piece and direction in every turn
-     * @param currentPlayer
-     * @return Request object
+     * This fucntion prompts user to select piece and direction in every turn
+     * @param currentPlayer     The current player
+     * @return                  The Request object
      */
     public int processUserRequest(Player currentPlayer){
         
@@ -79,31 +79,35 @@ public class Controller {
         Coordinate userCoor;
         int modelRet;
 
+        // display the message of the current turn
         CVInter.printTurnInfo(currentPlayer.getName(), currentPlayer.getParty());
+
+        // prompt user input until user enter the valid input
         do {
             CVInter.promptPlayerSelectPiece();
             userInputPiece = scanner.nextLine();
         }while(validatePiece(userInputPiece)==false);
 
+        // prompt user input until user enter the valid input
         do {
             CVInter.promptPlayerSelectDirection();
             userInputDirect = scanner.nextLine();
         }while(validateDirection(userInputDirect)==false);
 
+        // parsing the string to format that Model required
         userDirect = parseDirection(userInputDirect);
-        //Coordinate class already have constructor with string param, parsePiece() is not necessary
         userCoor = parsePiece(userInputPiece);  
 
+        // send the Request to the Model
         modelRet = CMInter.runRequest(new Request(currentPlayer, userCoor, userDirect[0], userDirect[1]));
 
         return modelRet;
     }
 
-    // TODO fill the javadoc
     /**
-     * this function parse user input direction string to integer array
-     * @param pos
-     * @return integer array,[0] is x, [1] is y
+     * This function parse user input direction string to integer array
+     * @param pos       The direction string
+     * @return          integer array,[0] is x, [1] is y
      */
     private int[] parseDirection(String direction) {
         //If userDirect pass validateDirect(), parse to request dx,dy
@@ -135,11 +139,10 @@ public class Controller {
         return temp;
     }
 
-    // TODO fill the javadoc
     /**
      * This function parse user input piece string to coordinate object
-     * @param pos
-     * @return coordinate object
+     * @param pos   The position string
+     * @return      The Coordinate object
      */
     private Coordinate parsePiece(String pos){
         // if userPiece pass validatePiece, parse to coordinate
@@ -147,10 +150,9 @@ public class Controller {
         return temp;
     }
 
-    // TODO fill the javadoc
     /**
-     * this function prompt user to input players' information at the start of the game
-     * @return player object array
+     * This function prompt user to input players' information at the start of the game
+     * @return      The Player object array
      */
     public Player[] getUserInfo() {
 
