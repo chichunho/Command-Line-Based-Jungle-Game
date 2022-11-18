@@ -82,47 +82,55 @@ public class View implements ModelViewInterface, ControllerViewInterface{
         switch (response.getMsgId()) {
             // when no piece is selected
             case 1:
-                System.out.println("No piece is selected, please input again.");
+                System.out.println("No piece is selected.");
+                System.out.println("Please input again.");
                 break;
             // when the player choose the opponent's piece
             case 2:
-                System.out.println("You can not choose opponent's piece, please input again.");
+                System.out.println("You can not choose opponent's piece.");
+                System.out.println("Please input again.");
                 break;
             // when pieces move out of bound
             case 3:
                 System.out.println("The destination is out of bound!");
+                System.out.println("Please input again.");
                 break;
 
             // when player try to move to his/her own den
             case 4:
                 System.out.println("You cannot enter your den!");
+                System.out.println("Please input again.");
                 break;
             // when the jump action of lion or tiger is interupted
             case 5:
-                System.out.println(arguments[0]+" cannot jump over the river due to a rat blocking the way.");
+                System.out.println(arguments[0]+" cannot jump over the river due to a piece in river blocking the way.");
+                System.out.println("Please input again.");
+                break;
             // when the piece fail to enter the water square
             case 6:
                 System.out.println("This piece cannot enter the water square!");
+                System.out.println("Please input again.");
                 break;
 
             // when player try to move to square where containing a friendly piece
             case 7:
                 System.out.println("One of your piece has already in that square!");
+                System.out.println("Please input again.");
                 break;
-
             // when player try to capture another higher rank piece, and it is not trapped
             case 8:
                 System.out.println("You cannot capture higher rank pieces!");
+                System.out.println("Please input again.");
                 break;
-
             // when the rat is in water and try to capture elephant on land
             case 9:
                 System.out.println("Rat in river cannot capture enemy elephant on land!");
+                System.out.println("Please input again.");
                 break;
-
             // when the rat is in water and try to capture enemy rat on land, or vice versa
             case 10:
                 System.out.println("Rat in river cannot capture enemy rat on land, or vice versa!");
+                System.out.println("Please input again.");
                 break;
             // when the player move his/her piece to enemy's den
             case 11:
@@ -130,11 +138,11 @@ public class View implements ModelViewInterface, ControllerViewInterface{
                 break;
             // the piece is moved successfully or capture the enemy's piece
             case 12:
-                if (arguments[3]!=null){
-                    System.out.println("Player "+arguments[0]+"\'s "+arguments[2]+" capture enemy "+arguments[3]+"!");
+                if (arguments[2]!=null){
+                    System.out.println("Player "+arguments[0]+"\'s "+arguments[1]+" capture enemy "+arguments[2]+"!");
                 }
                 else{
-                    System.out.println("Player "+arguments[0]+"\'s "+arguments[2]+" is moved sucessfully.");
+                    System.out.println("Player "+arguments[0]+"\'s "+arguments[1]+" is moved sucessfully.");
                 }
                 break;
             // when a player has no pieces to play

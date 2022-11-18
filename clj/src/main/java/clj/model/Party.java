@@ -6,7 +6,7 @@ public interface Party {
      * 0->neutral,
      * 1->Red party,
      * 2->Blue party
-     * @return      Party
+     * @return      The number represent the party.
      */
     abstract int getParty();
 }

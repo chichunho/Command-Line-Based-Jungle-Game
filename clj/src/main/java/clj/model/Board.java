@@ -8,6 +8,10 @@ public class Board {
     private BoardObj[][] terrain = new BoardObj[9][7];
     private int[] pieceCount = new int[2];
 
+
+    /**
+     * The constructor of Board object
+     */
     protected Board(){
 
         // initialized the board, cover it with Land
@@ -70,7 +74,7 @@ public class Board {
     }
 
     /**
-     * This function return the piece at the specific position on board.
+     * This function return the Piece at the specific position on board.
      * @param pos   The position of the piece
      * @return      The piece
      */
@@ -79,7 +83,7 @@ public class Board {
     }
 
     /**
-     * This function return the type of the terrain at the specific position on board.
+     * This function return the BoardObj (terrain) at the specific position on board.
      * @param pos   The position of the terrain
      * @return      A String object represent the type of terrain
      */
@@ -91,17 +95,24 @@ public class Board {
      * This function simulate the process of a player plays his/her movement.
      * This function will remove any piece at the destination and 
      * replaced by the piece picked up by the user.
-     * The flags of the piece will be modified by this function internally.
+     * The flags of the Piece will be modified by this function internally.
      * @param from      The position of the piece that picked up by the player
      * @param to        The destination
      */
     protected void move(Coordinate from, Coordinate to){
+        // if there is a piece at the destination square
+        // get its party and decrease the relevant piece count
         if (pieces[to.getRow()][to.getCol()] != null){
             int targetParty = pieces[to.getRow()][to.getCol()].getParty();
             pieceCount[targetParty-1]--;
         }
+
+        // replace the piece at the destination square
+        // set the previous square to empty(null)
         pieces[to.getRow()][to.getCol()] = pieces[from.getRow()][from.getCol()];
         pieces[from.getRow()][from.getCol()] = null;
+
+        // set the status flag
         if (terrain[to.getRow()][to.getCol()].getType().equals("Water")){
             pieces[to.getRow()][to.getCol()].setInWater(true);
         }
@@ -116,30 +127,47 @@ public class Board {
         }
     }
 
+    /**
+     * This function return the piece counts on the board.
+     * @return      The array of the current piece counts. [0]->Red, [1]->Blue
+     */
     public int[] getPieceCount(){
         return this.pieceCount;
     }
 
+    /**
+     * This function return the array storing all pieces on the board. The array should be read-only.
+     * @return      The array storing all pieces on the board.
+     */
     public Piece[][] getPiecesLocation(){
         return this.pieces;
     }
 
     /* Functions below are for testing only */
 
-    public void testSkip(Coordinate tigerPos, Coordinate tigerNewPos) {
-        pieces[tigerNewPos.getRow()][tigerNewPos.getCol()] = pieces[tigerPos.getRow()][tigerPos.getCol()];
-        pieces[tigerPos.getRow()][tigerPos.getCol()] = null;
-    }
-
+    /**
+     * A shortcut function that place a specific piece at the specific position on board
+     * @param piece     The instance of the piece
+     * @param pos       The desired position on board
+     */
     public void testSetPiece(Piece piece, Coordinate pos){
         pieces[pos.getRow()][pos.getCol()] = piece;
         pieceCount[piece.getParty()-1]++;
 
     }
+
+    /**
+     * A shortcut function that obtain the animal type at the specific position on board
+     * @param pos       The specific position on board
+     * @return          The animal type of the piece
+     */
     public String testGetPosPiece(Coordinate pos){
         return pieces[pos.getRow()][pos.getCol()].getAnimal();
     }
 
+    /**
+     * A shortcut function that empty the board, set both piece counts to 0
+     */
     public void testEmptyBoardPieces(){
         for (int i = 0; i < 9; i++){
             for (int j = 0; j < 7; j++){

@@ -4,6 +4,10 @@ import clj.controller.Coordinate;
 
 public class Cat extends Piece{
 
+    /**
+     * The constructor of Cat
+     * @param party
+     */
     protected Cat(int party){
         super("Cat", 2, party);
     }

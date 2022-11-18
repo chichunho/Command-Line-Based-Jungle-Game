@@ -10,16 +10,30 @@ public abstract class Piece implements Party{
     private boolean trapped = false;
     private boolean inWater = false;
 
+    /**
+     * The constructor of Piece
+     * @param animal    The type of the animal
+     * @param rank      The rank of the animal
+     * @param party     The party of the animal
+     */
     protected Piece(String animal, int rank, int party){
         this.animal = animal;
         this.rank = rank;
         this.party = party;
     }
 
+    /**
+     * This function returns the type of the animal
+     * @return      The string that describe the animal type.
+     */
     protected String getAnimal(){
         return this.animal;
     }
 
+    /**
+     * This function returns the rank of the animal
+     * @return      The rank of the animal
+     */
     protected int getRank(){
         return this.rank;
     }
@@ -29,18 +43,34 @@ public abstract class Piece implements Party{
         return this.party;
     }
 
+    /**
+     * This function sets the trapped status flag of the animal
+     * @param trapped       A boolean value indicate the trapped status
+     */
     protected void setTrapped(boolean trapped){
         this.trapped = trapped;
     }
 
+    /**
+     * This function returns the trapped status of the animal
+     * @return      A boolean value indicate the trapped status
+     */
     protected boolean isTrapped(){
         return this.trapped;
     }
 
+    /**
+     * This function sets the inWater status flag of the animal
+     * @param inWater   A boolean value indicate if the animal is in water square
+     */
     protected void setInWater(boolean inWater){
         this.inWater = inWater;
     }
 
+    /**
+     * This function returns the inWater status flag of the animal
+     * @return      A boolean value indicate if the animal is in water square
+     */
     protected boolean isInWater(){
         return this.inWater;
     }
@@ -75,8 +105,8 @@ public abstract class Piece implements Party{
 
     /**
      * This function override the default toString(),
-     * only used for printing output,
-     * for internal use, call method getAnimal() instead
+     * only used for printing output.
+     * For internal use, call method getAnimal() instead
      * @return          A Chinese character representing this piece
      */
     @Override
