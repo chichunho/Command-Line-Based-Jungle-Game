@@ -6,18 +6,26 @@ import clj.model.ModelViewInterface;
 
 public class View implements ModelViewInterface, ControllerViewInterface{
     
+    // The colour string the add colour to the pieces
     final String ANSI_RESET = "\u001B[0m";
     final String ANSI_RED = "\u001B[31m";
     final String ANSI_BLUE = "\u001B[34m";
 
+    // initialise the pieces location on the board
     final int[] RED_X = {1, 13, 3, 11, 1, 5, 9, 13};
     final int[] RED_Y = {1, 1, 3, 3, 5, 5, 5, 5};
     final int[] BLUE_X = {13, 1, 3, 11, 13, 9, 5, 1};
     final int[] BLUE_Y = {17, 17, 15, 15, 13, 13, 13, 13};
     final String[] ANIMAL_NAME = {"獅", "虎", "狗", "貓", "鼠", "豹", "狼", "象"};
 
+        
+    /** TODO fill the javadoc
+    *
+    * This function to print the initial board
+    * @return Nothing
+    */
     public void printInit(){
-
+        
         // game board view with no pieces placed
         // 19 rows, 15 columns
         String[][] board = {
@@ -41,11 +49,13 @@ public class View implements ModelViewInterface, ControllerViewInterface{
             {"|","　","|","　","|","陷","|","穴","|","陷","|","　","|","　","|"},
             {"—","－","—","－","—","－","—","－","—","－","—","－","—","－","—"}};
 
+        // add pieces with colour to the board
         for (int i = 0; i < 8; i++){
             board[RED_Y[i]][RED_X[i]] = ANSI_RED + ANIMAL_NAME[i] + ANSI_RESET;
             board[BLUE_Y[i]][BLUE_X[i]] = ANSI_BLUE + ANIMAL_NAME[i] + ANSI_RESET;
         }
-
+        
+        // print [A-G], [1-9] beside the board for players to easy to read the board
         char colIndex = 'A';
         int rowIndex = 9;
         for (int i = 0; i < 19; i++){
@@ -73,6 +83,13 @@ public class View implements ModelViewInterface, ControllerViewInterface{
         System.out.println();
     }
 
+    /** TODO fill the javadoc
+    *
+    * This function to receive the message and data from the model and call the printView function to print the view and print suitable message 
+    * @param Response
+    * @return Nothing
+    */
+    
     @Override
     public void modelUpdateView(Response response){
 
@@ -151,6 +168,13 @@ public class View implements ModelViewInterface, ControllerViewInterface{
                 break;
         }
     }
+    
+    /** TODO fill the javadoc
+    *
+    * This function to print the View with upated data 
+    * @param Response
+    * @return Nothing
+    */
     public void printView(Response response){
 
         // game board view with no pieces placed
@@ -225,6 +249,12 @@ public class View implements ModelViewInterface, ControllerViewInterface{
         System.out.println();
     }
 
+    /** TODO fill the javadoc
+    *
+    * This function to ask the players to input their name
+    * @param counting of the function execution times
+    * @return Nothing
+    */
     @Override
     public void promptPlayerName(int count) {
         if (count == 0){
@@ -235,6 +265,12 @@ public class View implements ModelViewInterface, ControllerViewInterface{
         }
     }
 
+    /** TODO fill the javadoc
+    *
+    * This function to print the message of theteam distribution
+    * @param p1, p2, p1Party
+    * @return Nothing
+    */
     @Override
     public void printPlayerInfo(String p1, String p2, int p1Party) {
         if (p1Party == 1){
@@ -247,6 +283,12 @@ public class View implements ModelViewInterface, ControllerViewInterface{
         }
     }
 
+    /** TODO fill the javadoc
+    *
+    * This function to print it is who's trun
+    * @param currentPlayer, currentPlayer's party
+    * @return Nothing
+    */
     @Override
     public void printTurnInfo(String currentPlayer, int party) {
         System.out.print("Now is "+currentPlayer);
@@ -259,31 +301,61 @@ public class View implements ModelViewInterface, ControllerViewInterface{
         System.out.println("\'s turn.");
     }
 
+    /** TODO fill the javadoc
+    *
+    * This function to print the message of asking player to select a piece
+    * @return Nothing
+    */
     @Override
     public void promptPlayerSelectPiece() {
         System.out.print("Please select Piece: ");
     }
 
+    /** TODO fill the javadoc
+    *
+    * This function to print the message of asking player to select the direction
+    * @return Nothing
+    */
     @Override
     public void promptPlayerSelectDirection() {
         System.out.print("Please select Direction: ");
     }
 
+    /** TODO fill the javadoc
+    *
+    * This function to print the message of player input invalid input when selecting a piece that is not in the format of 1 english letter and one number
+    * @return Nothing
+    */
     @Override
     public void alertPieceWrongLength() {
         System.out.println("Invalid input: input should consist 1 english letter and one number.");
     }
 
+    /** TODO fill the javadoc
+    *
+    * This function to print the message of player input invalid input when selecting a piece that is not in the format of [A-G][1-9]
+    * @return Nothing
+    */
     @Override
     public void alertPieceWrongFormat() {
         System.out.println("Invalid input: The input should follow the format of [A-G][1-9], e.g. A3.");
     }
 
+    /** TODO fill the javadoc
+    *
+    * This function to print the message of player input invalid input when selecting a piece that is not 1 character
+    * @return Nothing
+    */
     @Override
     public void alertDirectionWrongLength() {
         System.out.println("Invalid input: input should consists 1 character");
     }
 
+    /** TODO fill the javadoc
+    *
+    * This function to print the message of player input invalid input when selecting a piece that is not 'w', 's', 'a', or 'd'.
+    * @return Nothing
+    */
     @Override
     public void alertDirectionWrongFormat() {
         System.out.println("Invalid Direction selected");
