@@ -123,4 +123,30 @@ public class Board {
     public Piece[][] getPiecesLocation(){
         return this.pieces;
     }
+
+    /* Functions below are for testing only */
+
+    public void testSkip(Coordinate tigerPos, Coordinate tigerNewPos) {
+        pieces[tigerNewPos.getRow()][tigerNewPos.getCol()] = pieces[tigerPos.getRow()][tigerPos.getCol()];
+        pieces[tigerPos.getRow()][tigerPos.getCol()] = null;
+    }
+
+    public void testSetPiece(Piece piece, Coordinate pos){
+        pieces[pos.getRow()][pos.getCol()] = piece;
+        pieceCount[piece.getParty()-1]++;
+
+    }
+    public String testGetPosPiece(Coordinate pos){
+        return pieces[pos.getRow()][pos.getCol()].getAnimal();
+    }
+
+    public void testEmptyBoardPieces(){
+        for (int i = 0; i < 9; i++){
+            for (int j = 0; j < 7; j++){
+                pieces[i][j] = null;
+            }
+        }
+        pieceCount[0] = 0;
+        pieceCount[1] = 0;
+    }
 }

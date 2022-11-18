@@ -1,13 +1,16 @@
 package clj.model;
 
 import clj.controller.Coordinate;
+import clj.controller.Player;
 import clj.controller.PlayerTest;
+import clj.controller.Request;
 import clj.controller.RequestTest;
 
 import org.junit.Before;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
+import clj.view.View;
 
 public class UnitTestModelTest {
     /**
@@ -24,12 +27,13 @@ public class UnitTestModelTest {
      *  Coordinate c3 is position from the bottom of den
      */
     Coordinate c1,c2,c3,c4;
-    PieceTest p1lion,p2rat,p1tiger,p2cat, p2elephant, p1rat, p1cat;
-    BoardTest testBoard = new BoardTest();
-    ModelTest testModel = new ModelTest(testBoard);
+    Piece p1lion,p2rat,p1tiger,p2cat, p2elephant, p1rat, p1cat;
+    Board testBoard;
+    View view = new View();
+    Model testModel = new Model(view);
 
-    RequestTest testRequest;
-    PlayerTest testPlayer;
+    Request testRequest;
+    Player testPlayer;
 
     Coordinate topLeft, topRight, bottomLeft, bottomRight;
     
@@ -45,17 +49,18 @@ public class UnitTestModelTest {
         c3 = new Coordinate("D8");
         c4 = new Coordinate("D7"); //this coordinate is set under c3
 
-        p1lion = new LionTest(1);
-        p2rat = new RatTest(2);
-        p1tiger = new TigerTest(1);
-        p2cat = new CatTest(2);
-        p2elephant = new ElephantTest(2);
-        p1rat = new RatTest(1);
-        p1cat = new CatTest(1);
+        p1lion = new Lion(1);
+        p2rat = new Rat(2);
+        p1tiger = new Tiger(1);
+        p2cat = new Cat(2);
+        p2elephant = new Elephant(2);
+        p1rat = new Rat(1);
+        p1cat = new Cat(1);
 
+        testBoard = testModel.testGetBoard();
         testBoard.testEmptyBoardPieces();
 
-        testPlayer = new PlayerTest("test", 1);
+        testPlayer = new Player().testPlayer("test", 1);
     }
 
     /**
@@ -96,7 +101,7 @@ public class UnitTestModelTest {
      */
     @Test
     public void testSelectEmptySquare(){
-        testRequest = new RequestTest(testPlayer, topLeft, 1, 0);
+        testRequest = new Request().testRequest(testPlayer, topLeft, 1, 0);
         // testing if branch -> if (pickedPiece == null)
         assertEquals(1, testModel.runRequest(testRequest));
     }
@@ -109,7 +114,7 @@ public class UnitTestModelTest {
     @Test
     public void testSelectEnemyPiece(){
         testBoard.testSetPiece(p2rat, c3);
-        testRequest = new RequestTest(testPlayer, c3, 1, 0);
+        testRequest = new Request().testRequest(testPlayer, c3, 1, 0);
         // testing if branch -> if (pickedPiece.getParty() != request.getPlayerParty())
         assertEquals(2, testModel.runRequest(testRequest));
     }
@@ -122,7 +127,7 @@ public class UnitTestModelTest {
     @Test
     public void testIsOutOfBound(){
         testBoard.testSetPiece(p1lion, topLeft);
-        testRequest = new RequestTest(testPlayer, topLeft, -1, 0);
+        testRequest = new Request().testRequest(testPlayer, topLeft, -1, 0);
         // testsing if branch -> if (isOutOfBound(dest))
         assertEquals(3, testModel.runRequest(testRequest));
     }
@@ -135,7 +140,7 @@ public class UnitTestModelTest {
     @Test
     public void testMoveToOwnDen(){
         testBoard.testSetPiece(p1lion, c3);
-        testRequest = new RequestTest(testPlayer, c3, 0, -1);
+        testRequest = new Request().testRequest(testPlayer, c3, 0, -1);
         // testing first switch branch -> case 1
         assertEquals(4, testModel.runRequest(testRequest));
     }
@@ -150,7 +155,7 @@ public class UnitTestModelTest {
         Coordinate p1tigerPos = new Coordinate("A6");
         testBoard.testSetPiece(p2rat, p2ratPos);
         testBoard.testSetPiece(p1tiger, p1tigerPos);
-        testRequest = new RequestTest(testPlayer, p1tigerPos, 1, 0);
+        testRequest = new Request().testRequest(testPlayer, p1tigerPos, 1, 0);
         // testing first switch branch -> case 2
         // testing case 2 if branch -> if (pickedPiece.getAnimal().equals("Lion") ||
         //                              pickedPiece.getAnimal().equals("Tiger"))
@@ -166,7 +171,7 @@ public class UnitTestModelTest {
     public void testFailEnterWater(){
         Coordinate p1catPos = new Coordinate("A6");
         testBoard.testSetPiece(p1cat, p1catPos);
-        testRequest = new RequestTest(testPlayer, p1catPos, 1, 0);
+        testRequest = new Request().testRequest(testPlayer, p1catPos, 1, 0);
         // testing first switch branch -> case 2
         assertEquals(6, testModel.runRequest(testRequest));
     }
@@ -182,7 +187,7 @@ public class UnitTestModelTest {
         Coordinate p1lionPos = new Coordinate("B1");
         testBoard.testSetPiece(p1lion, p1lionPos);
         testBoard.testSetPiece(p1tiger, p1tigerPos);
-        testRequest = new RequestTest(testPlayer, p1lionPos, -1, 0);
+        testRequest = new Request().testRequest(testPlayer, p1lionPos, -1, 0);
         // testsing second switch branch -> case 1
         assertEquals(7, testModel.runRequest(testRequest));
     }
@@ -198,7 +203,7 @@ public class UnitTestModelTest {
         Coordinate p2elephantPos = new Coordinate("B1");
         testBoard.testSetPiece(p1lion, p1lionPos);
         testBoard.testSetPiece(p2elephant, p2elephantPos);
-        testRequest = new RequestTest(testPlayer, p1lionPos, 1, 0);
+        testRequest = new Request().testRequest(testPlayer, p1lionPos, 1, 0);
         // testing second switch branch -> case 2
         assertEquals(8, testModel.runRequest(testRequest));
     }
@@ -215,7 +220,7 @@ public class UnitTestModelTest {
         Coordinate p2elephantPos = new Coordinate("A6");
         testBoard.testSetPiece(p1rat, p1ratPos);
         testBoard.testSetPiece(p2elephant, p2elephantPos);
-        testRequest = new RequestTest(testPlayer, p1ratPos, -1, 0);
+        testRequest = new Request().testRequest(testPlayer, p1ratPos, -1, 0);
         // testing second switch branch -> case 3
         assertEquals(9, testModel.runRequest(testRequest));
     }
@@ -232,7 +237,7 @@ public class UnitTestModelTest {
         Coordinate p2ratPos = new Coordinate("A6");
         testBoard.testSetPiece(p1rat, p1ratPos);
         testBoard.testSetPiece(p2rat, p2ratPos);
-        testRequest = new RequestTest(testPlayer, p1ratPos, -1, 0);
+        testRequest = new Request().testRequest(testPlayer, p1ratPos, -1, 0);
         // testing second switch branch -> case 3
         assertEquals(10, testModel.runRequest(testRequest));
     }
@@ -255,8 +260,8 @@ public class UnitTestModelTest {
          *  First, controller send request to model, asking to move a piece from a party to the direction.
          *  if the piece move to den, response should state that the game is ended.
          */
-        PlayerTest testPlayer = new PlayerTest("test", 2);
-        testRequest = new RequestTest(testPlayer, c3, 0,-1);
+        Player testPlayer = new Player().testPlayer("test", 2);
+        testRequest = new Request().testRequest(testPlayer, c3, 0,-1);
         // testing if branch -> if (board.at(dest).getType().equals("Den"))
         assertEquals(11, testModel.runRequest(testRequest));
     }
@@ -265,7 +270,7 @@ public class UnitTestModelTest {
     public void testContinueGame(){
         testBoard.testSetPiece(p1cat, bottomLeft);
         testBoard.testSetPiece(p2elephant, bottomRight);
-        testRequest = new RequestTest(testPlayer, bottomLeft, 0,-1);
+        testRequest = new Request().testRequest(testPlayer, bottomLeft, 0,-1);
         // testing if branch -> if (pieceCount[0] > 0 && pieceCount[1] > 0)
         assertEquals(12, testModel.runRequest(testRequest));
     }
@@ -284,8 +289,8 @@ public class UnitTestModelTest {
          * It simulates two players have 1 remaining piece on the game board
          * When one player capture the other piece, model shall identify and response shall be stated the game is ended to view.
          */
-        PlayerTest testPlayer = new PlayerTest("test", 1);
-        testRequest = new RequestTest(testPlayer, c4, 0, -1);
+        Player testPlayer = new Player().testPlayer("test", 1);
+        testRequest = new Request().testRequest(testPlayer, c4, 0, -1);
         // testing if branch -> if (pieceCount[0] > 0 && pieceCount[1] > 0)
         assertEquals(13, testModel.runRequest(testRequest));
     }

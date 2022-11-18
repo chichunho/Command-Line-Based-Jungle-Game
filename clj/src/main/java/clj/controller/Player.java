@@ -20,4 +20,12 @@ public class Player implements Party{
     public int getParty() {
         return this.party;
     }
+
+    /* Below are methods and constructor used in test only */
+    public Player(){
+        
+    }
+    public Player testPlayer(String name, int party){
+        return new Player(name, party);
+    }
 }

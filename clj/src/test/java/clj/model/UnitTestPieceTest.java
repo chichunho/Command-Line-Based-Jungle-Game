@@ -10,32 +10,32 @@ import org.junit.Test;
 
 public class UnitTestPieceTest {
 
-    PieceTest[] p1Pieces;
-    PieceTest[] p2Pieces;
-    BoardTest board;
+    Piece[] p1Pieces;
+    Piece[] p2Pieces;
+    Board board;
 
     @Before
     public void init(){
-        p1Pieces = new PieceTest[8];
-        p2Pieces = new PieceTest[8];
+        p1Pieces = new Piece[8];
+        p2Pieces = new Piece[8];
 
-        p1Pieces[0] = new ElephantTest(1);
-        p1Pieces[1] = new LionTest(1);
-        p1Pieces[2] = new TigerTest(1);
-        p1Pieces[3] = new LeopardTest(1);
-        p1Pieces[4] = new WolfTest(1);
-        p1Pieces[5] = new DogTest(1);
-        p1Pieces[6] = new CatTest(1);
-        p1Pieces[7] = new RatTest(1);
+        p1Pieces[0] = new Elephant(1);
+        p1Pieces[1] = new Lion(1);
+        p1Pieces[2] = new Tiger(1);
+        p1Pieces[3] = new Leopard(1);
+        p1Pieces[4] = new Wolf(1);
+        p1Pieces[5] = new Dog(1);
+        p1Pieces[6] = new Cat(1);
+        p1Pieces[7] = new Rat(1);
 
-        p2Pieces[0] = new ElephantTest(2);
-        p2Pieces[1] = new LionTest(2);
-        p2Pieces[2] = new TigerTest(2);
-        p2Pieces[3] = new LeopardTest(2);
-        p2Pieces[4] = new WolfTest(2);
-        p2Pieces[5] = new DogTest(2);
-        p2Pieces[6] = new CatTest(2);
-        p2Pieces[7] = new RatTest(2);
+        p2Pieces[0] = new Elephant(2);
+        p2Pieces[1] = new Lion(2);
+        p2Pieces[2] = new Tiger(2);
+        p2Pieces[3] = new Leopard(2);
+        p2Pieces[4] = new Wolf(2);
+        p2Pieces[5] = new Dog(2);
+        p2Pieces[6] = new Cat(2);
+        p2Pieces[7] = new Rat(2);
     }
 
     /**
@@ -99,11 +99,11 @@ public class UnitTestPieceTest {
      */
     @Test
     public void ratCanCaptureTest(){
-        PieceTest p1rat = p1Pieces[7];
-        PieceTest p2rat = p2Pieces[7];
-        PieceTest p1elephant = p1Pieces[0];
-        PieceTest p2elephant = p2Pieces[0];
-        PieceTest p2lion = p2Pieces[1];
+        Piece p1rat = p1Pieces[7];
+        Piece p2rat = p2Pieces[7];
+        Piece p1elephant = p1Pieces[0];
+        Piece p2elephant = p2Pieces[0];
+        Piece p2lion = p2Pieces[1];
         // testing if branch -> if (another == null)
         assertEquals(0, p1rat.canCapture(null));
         // tetsing if branch -> if (another.getParty() == this.getParty())
@@ -130,9 +130,9 @@ public class UnitTestPieceTest {
      */
     @Test
     public void ratCanMoveToTest(){
-        PieceTest p1rat = p1Pieces[7];
-        BoardObjTest dummy1 = new BoardObjTest("Den", 1);
-        BoardObjTest dummy2 = new BoardObjTest("Den", 2);
+        Piece p1rat = p1Pieces[7];
+        BoardObj dummy1 = new BoardObj("Den", 1);
+        BoardObj dummy2 = new BoardObj("Den", 2);
         // testing if branch -> if (dest.getType().equals("Den") &&
         //                      dest.getParty() == this.getParty())
         assertEquals(1, p1rat.canMoveTo(dummy1));
@@ -145,11 +145,11 @@ public class UnitTestPieceTest {
       */
     @Test
     public void lionTigerCalFinalDestTest(){
-        board = new BoardTest();
+        board = new Board();
         board.testEmptyBoardPieces();
-        PieceTest p1lion = p1Pieces[1];
-        PieceTest p1tiger = p1Pieces[2];
-        PieceTest[] jumpAnimals = {p1lion, p1tiger};
+        Piece p1lion = p1Pieces[1];
+        Piece p1tiger = p1Pieces[2];
+        Piece[] jumpAnimals = {p1lion, p1tiger};
         Coordinate dest = new Coordinate("B6");
         Coordinate expectedDest;
 
@@ -163,7 +163,7 @@ public class UnitTestPieceTest {
         
 
         // insert a rat in the mid-way
-        PieceTest p1rat = p1Pieces[0];
+        Piece p1rat = p1Pieces[0];
         Coordinate p1ratPos = new Coordinate("C6");
         board.testSetPiece(p1rat, p1ratPos);
         for(int i = 0; i < 2; i++){

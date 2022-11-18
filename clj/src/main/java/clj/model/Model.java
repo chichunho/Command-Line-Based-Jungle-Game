@@ -146,4 +146,14 @@ public class Model implements ControllerModelInterface{
         }
         return false;
     }
+
+    /* Belows are the method used in test only */
+
+    public boolean testIsOutOfBound(Coordinate pos, int dx, int dy){
+        Coordinate dest = new Coordinate(pos.getCol()+dx, pos.getRow()+dy);
+        return isOutOfBound(dest);
+    }
+    public Board testGetBoard(){
+        return this.board;
+    }
 }

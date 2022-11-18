@@ -35,4 +35,10 @@ public class Request {
     public String getPlayerName(){
         return this.player.getName();
     }
+
+    /* Belows are constructor and methods used in test only */
+    public Request(){}
+    public Request testRequest(Player player, Coordinate coordinate, int dx, int dy){
+        return new Request(player, coordinate, dx, dy);
+    }
 }

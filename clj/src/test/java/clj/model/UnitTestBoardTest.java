@@ -10,19 +10,19 @@ import clj.controller.Coordinate;
 public class UnitTestBoardTest {
 
     Coordinate c1, c2;
-    PieceTest p1lion, p2rat;
-    BoardTest testBoard;
+    Piece p1lion, p2rat;
+    Board testBoard;
 
     @Before
     public void init(){
         c1 = new Coordinate("D8");
         c2 = new Coordinate("D7");
 
-        testBoard = new BoardTest();
+        testBoard = new Board();
         testBoard.testEmptyBoardPieces();
-        p1lion = new LionTest(1);
+        p1lion = new Lion(1);
         p1lion.setTrapped(true);
-        p2rat = new RatTest(2);
+        p2rat = new Rat(2);
         // Lion at D7
         testBoard.testSetPiece(p1lion,c2);
         // Rat at D8
@@ -36,7 +36,7 @@ public class UnitTestBoardTest {
     @Test
     public void BoardInitializeTest()
     {
-        BoardTest testboard = new BoardTest();
+        Board testboard = new Board();
         assertEquals("Tiger", testboard.pick((new Coordinate("A1"))).getAnimal());
         assertEquals("Tiger", testboard.pick((new Coordinate("G9"))).getAnimal());
 

@@ -27,7 +27,7 @@ public class App
 
         view.printInit();
 
-        while(ret != 11 || ret != 13){
+        while(ret != 11 && ret != 13){
             currentPlayer = players[turn%2];
 
             ret = controller.processUserRequest(currentPlayer);
