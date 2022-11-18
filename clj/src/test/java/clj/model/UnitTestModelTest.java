@@ -2,9 +2,7 @@ package clj.model;
 
 import clj.controller.Coordinate;
 import clj.controller.Player;
-import clj.controller.PlayerTest;
 import clj.controller.Request;
-import clj.controller.RequestTest;
 
 import org.junit.Before;
 
