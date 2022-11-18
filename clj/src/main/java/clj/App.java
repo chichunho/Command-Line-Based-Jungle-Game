@@ -36,8 +36,6 @@ public class App
             } 
         }
 
-        /*TODO print some message to notice the players the game has ended */
-
         scanner.close();
     }
 }
