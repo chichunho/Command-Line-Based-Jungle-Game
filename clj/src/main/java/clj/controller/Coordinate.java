@@ -6,7 +6,7 @@ public class Coordinate {
 
     // TODO fill the javadoc
     /**
-     * Constructor of object Coordinate
+     * Constructor of class Coordinate
      * @param pos
      */
     public Coordinate(String pos){
@@ -17,7 +17,7 @@ public class Coordinate {
 
     // TODO fill the javadoc
     /**
-     * 
+     * Constructor of class Coordinate
      * @param x
      * @param y
      */
@@ -42,8 +42,8 @@ public class Coordinate {
 
     // TODO fill the javadoc
     /**
-     * 
-     * @return
+     * getter of the column
+     * @return column
      */
     public int getCol(){
         return this.col;
@@ -51,8 +51,8 @@ public class Coordinate {
 
     // TODO fill the javadoc
     /**
-     * 
-     * @return
+     * getter of the row
+     * @return row
      */
     public int getRow(){
         return this.row;
