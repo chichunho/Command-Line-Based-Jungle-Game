@@ -4,7 +4,7 @@
 [Jungle game](https://en.wikipedia.org/wiki/Jungle_(board_game)) is a traditional Chinese board game. This is a software engineering course project.
 
 This repository contains:
-1. Brief introduction
+1. Description
 2. Dependencies
 3. How to install and execute
 4. Operations
