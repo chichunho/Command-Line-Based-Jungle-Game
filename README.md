@@ -10,9 +10,10 @@ This repository contains:
 4. Operations
 5. Authors
 
-## Brief introduction
+## Description
+Year: 2022
 
-User should be able to play the Jungle game through a command-line-based window. 
+The command line based Jungle game implementation. 
 [Here](https://en.wikipedia.org/wiki/Jungle_(board_game)#Rules) is the game rules.
 
 ## Dependencies
